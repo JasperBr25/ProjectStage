@@ -19,14 +19,14 @@ var plumber = require('gulp-plumber');
 
 var globalConfig = {
   scripts_src_dir: 'src/js',
-  scripts_dest_dir: '../build/js',
+  scripts_dest_dir: 'build/js',
   img_src_dir: 'src/img',
-  img_dest_dir: '../build/img',
+  img_dest_dir: 'build/img',
   sass_src_dir: 'src/sass',
-  css_dest_dir: '../build/css',
-  build_dir: '../build',
+  css_dest_dir: 'build/css',
+  build_dir: 'build',
   fonts_src_dir: 'src/fonts',
-  fonts_dir: '../build/fonts'
+  fonts_dir: 'build/fonts'
 };
 
 /*
