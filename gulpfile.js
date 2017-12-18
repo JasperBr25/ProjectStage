@@ -53,7 +53,7 @@ gulp.task('styles:build', function() {
     .pipe(csscomb())
     .pipe(sass({
       outputStyle: 'compressed',
-      includePaths: ['../../../contrib/gent_base/source/node_modules/breakpoint-sass/stylesheets']
+      includePaths: ['node_modules/breakpoint-sass/stylesheets']
     })).on('error', sass.logError)
     .pipe(autoprefixer({
       browsers: ['last 5 versions']
@@ -87,7 +87,7 @@ gulp.task('styles:dist', function() {
     .pipe(csscomb())
     .pipe(sass({
       outputStyle: 'nested',
-      includePaths: ['../../../contrib/gent_base/source/node_modules/breakpoint-sass/stylesheets']
+      includePaths: ['node_modules/breakpoint-sass/stylesheets']
     })).on('error', sass.logError)
     .pipe(autoprefixer({
       browsers: ['last 5 versions']
@@ -149,7 +149,7 @@ gulp.task('js:dist', function() {
     .pipe(plumber())
     .pipe(rename({
       dirname: '',
-      suffix: "-min",
+      suffix: "-min"
     }))
     .pipe(gulp.dest(globalConfig.scripts_dest_dir));
 });
