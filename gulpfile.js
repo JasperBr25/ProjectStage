@@ -8,7 +8,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var sassLint = require('gulp-sass-lint');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
-var eslint = require('gulp-eslint');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var minify = require('gulp-minify');
@@ -63,6 +62,7 @@ gulp.task('html:dist', function () {
 gulp.task('html:validate', function () {
     gulp.src(globalConfig.html_src_dir + '/**/*.html')
         .pipe(htmlhint())
+        .pipe(htmlhint.reporter())
         .pipe(access({
             force: true,
             reportLevels: {
@@ -220,10 +220,8 @@ gulp.task('js:dist', function () {
 gulp.task('js:validate', function () {
     return gulp.src(globalConfig.scripts_src_dir + '/**/*.js')
         .pipe(plumber())
-        // .pipe(eslint({
-        //     configFile: './.eslintrc'
-        // }))
-        // .pipe(eslint.format())
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 /*
