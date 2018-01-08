@@ -1,0 +1,19 @@
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/00-settings/reset';
+
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/00-settings/vars';
+@import '00-settings/vars';
+
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/01-mixins/**/*';
+@import '01-mixins/**/*';
+
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/11-base/**/*';
+@import '11-base/**/*';
+
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/21-atoms/**/*';
+@import '21-atoms/**/*';
+
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/31-molecules/**/*';
+@import '31-molecules/**/*';
+
+@import '../../node_modules/gent_styleguide/build/styleguide/sass/41-organisms/**/*';
+@import '41-organisms/**/*';
