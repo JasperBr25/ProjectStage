@@ -76,6 +76,13 @@ gulp.task('html:validate', function () {
     }))
 });
 
+/*
+ *
+ * JS files build task.
+ *
+ * Copies and minifies your JS files to build/js/
+ *
+ */
 gulp.task('html:build', ['html:dist'], function () {
   gulp.src(globalConfig.html_src_dir + '/**/*.html')
     .pipe(access({
@@ -97,7 +104,13 @@ gulp.task('html:watch', function () {
   gulp.watch(globalConfig.html_src_dir + '/**/*.html', ['html:dist', 'html:validate']);
 });
 
-
+/*
+ *
+ * JS files build task.
+ *
+ * Copies and minifies your JS files to build/js/
+ *
+ */
 gulp.task('styles:build', function () {
   gulp.src(globalConfig.sass_src_dir + '/**/*.s+(a|c)ss')
     .pipe(plumber())
@@ -177,7 +190,6 @@ gulp.task('styles:watch', function () {
   gulp.watch(globalConfig.sass_src_dir + '/**/*.scss', ['styles:dist', 'styles:validate']);
 });
 
-
 /*
  *
  * JS files build task.
@@ -213,6 +225,11 @@ gulp.task('js:dist', function () {
     .pipe(gulp.dest(globalConfig.scripts_dest_dir));
 });
 
+/*
+ *
+ * Validate SCSS files.
+ *
+ */
 gulp.task('js:validate', function () {
   return gulp.src(globalConfig.scripts_src_dir + '/**/*.js')
     .pipe(plumber())
@@ -228,7 +245,6 @@ gulp.task('js:validate', function () {
 gulp.task('js:watch', function () {
   gulp.watch(globalConfig.scripts_src_dir + '/**/*.js', ['js:dist', 'js:validate']);
 });
-
 
 /*
  *
@@ -264,6 +280,10 @@ gulp.task('build:clean', function (cb) {
  *
  */
 gulp.task('default', ['styles:watch', 'js:watch', 'html:watch']);
+
+/*
+ * Watch:
+ */
 gulp.task('watch', ['default']);
 
 /*
@@ -288,6 +308,13 @@ gulp.task('compile', function (done) {
   sequence('build:clean', ['styles:build', 'js:build', 'html:build', 'images:minify', 'fonts:dist'], done);
 });
 
+/*
+ * Compile the theme.
+ * Usage:
+ *  gulp compile
+ *
+ *  Used build the SCSS and JS code. This also minifies images.
+ */
 gulp.task('compile:dev', function (done) {
   sequence('build:clean', ['styles:dist', 'js:dist', 'html:dist', 'images:minify', 'fonts:dist'], done);
 });
