@@ -1,0 +1,37 @@
+C:\Users\braeckja\PhpstormProjects\Projectwerk\src\html\index.html
+heading|issue|element|id|class|line|column|description
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_2.H25.2|<title>Inleiding</title>|||5|2|Check that the title element describes the document.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81,H33|<a href="#" title="Home" rel="home">
+          <img src="../../build/img/svg/logo.svg" alt="Home" class="">
+        </a>|||1|0|Check that the link text combined with programmatically determined link context, or its title attribute, identifies the purpose of the link.
+NOTICE|WCAG2A.Principle1.Guideline1_1.1_1_1.G94.Image|<img src="../../build/img/svg/logo.svg" alt="Home" class="">|||1|0|Ensure that the img element's alt text serves the same purpose and presents the same information as the image.
+NOTICE|WCAG2A.Principle1.Guideline1_1.1_1_1.G73,G74|<img src="../../build/img/svg/logo.svg" alt="Home" class="">|||1|0|If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://stad.gent/" target="_blank">Stad
+        Gent</a>|||1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle3.Guideline3_2.3_2_1.G107|<input type="button" class="btn btn--small btn--inline" value="Edit">||btn btn--small btn--inline|84|10|Check that a change of context does not occur when this input field receives focus.
+NOTICE|WCAG2A.Principle3.Guideline3_2.3_2_1.G107|<select name="select_name" id="select_id">
+            <optgroup name="select_name">
+              <option selected="" value="Query1">Query 1</option>
+              <option value="Query2">Query 2</option>
+              <option value="Query3">Query 3</option>
+              <option value="Query4">Query 4</option>
+              <option value="Query5">Query 5</option>
+            </optgroup>
+          </select>|select_id||1|0|Check that a change of context does not occur when this input field receives focus.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a class="phone" href="tel:+3288888888">08 888 88 88 - mo - sat
+              from 8-19u</a>||phone|1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a class="email" href="mailto:gentinfo@stad.gent">gentinfo@stad.gent</a>||email|115|16|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://stad.gent/werken-ondernemen/werken/werken-bij-de-stad-gent/vacatures-en-solliciteren">Vacancies</a>|||1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://stad.gent/over-gent-en-het-stadsbestuur/over-gent/kaarten-cijfers-en-data/gent-kaart/stadsplan">City
+              plan</a>|||1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="http://persruimte.stad.gent/">Press room City of
+            Ghent</a>|||1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://stad.gent/over-gent-en-het-stadsbestuur/vragen-suggesties-en-meldingen/juridische-info-en-privacy ">Legal
+              info and privacy</a>|||1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://www.facebook.com/stadsbestuurgent" class="facebook">stadsbestuurgent</a>||facebook|1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://twitter.com/stadgent" class="twitter">@Stadgent</a>||twitter|1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://www.linkedin.com/company/stad-gent" class="linkedin">Stad Gent</a>||linkedin|1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://www.youtube.com/channel/UCmJLf8SFG0D0GTd6LSSTQLw" class="youtube">YouTube
+              Stad Gent</a>||youtube|1|0|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+NOTICE|WCAG2A.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81|<a href="https://www.instagram.com/stadgent/" class="instagram">@stadgent</a>||instagram|159|16|Check that the link text combined with programmatically determined link context identifies the purpose of the link.
+WARNING|WCAG2A.Principle1.Guideline1_3.1_3_1.H49.I|<i class="icon-digipolis"></i>||icon-digipolis|166|42|Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.
