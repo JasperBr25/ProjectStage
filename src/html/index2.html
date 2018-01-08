@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sparql query</title>
-  <link rel="stylesheet" href="../../build/css/main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <header class="header section--wrapper container">
@@ -23,7 +23,7 @@
   </div>
 </header>
 
-<main id="main container">
+<main id="main" class="container">
 
   <div class="content-container">
 
@@ -141,49 +141,58 @@
         </div>
 
       </div>
-
-      <p>Sparql query</p>
-      <div class="form-item">
-        <div class="form-label">
-          <label for="textarea_id">Label textarea
-          </label>
-        </div>
-        <div class="form-columns">
-          <div class="form-item-column">
-            <div class=""></div>
+      <div class="col-desktop-8">
+        <p>Sparql query</p>
+        <div class="form-item">
+          <div class="form-label">
+            <label for="textarea_id">Label textarea
+            </label>
           </div>
-          <div class="form-item-column">
-<textarea name="textarea_name" id="textarea_id">
-</textarea>
-            <input type="button" class="btn btn--small btn--inline"
-                   value="Uitvoeren"> <input type="button"
-                                             class="btn btn--small btn--inline"
-                                             value="Revert">
 
+          <div class="textarea">
+            <textarea name="textarea_name" id="textarea_id"></textarea>
           </div>
+            <div class="button-group">
+              <input type="button" class="btn btn--small btn--inline"
+                     value="Uitvoeren">
+              <input type="button"
+                     class="btn btn--small btn--inline"
+                     value="Revert">
+            </div>
+
+          <table summary="Monthly savings">
+            <caption>Resultaat</caption>
+            <tr>
+              <th>Sorteren</th>
+              <th>Welk veld</th>
+              <th>A-Z|Z-A</th>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+          </table>
+          <input type="button" class="btn btn--small btn--inline" value="<=">
+          <input type="button"
+                 class="btn btn--small btn--inline"
+                 value="=>">
+
+
         </div>
-
-        <p>Resultaat</p>
-
-        <table summary="Monthly savings">
-          <caption>Resultaat</caption>
-          <tr>
-            <th>Month</th>
-            <th>Savings</th>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-          </tr>
-        </table>
-        <input type="button" class="btn btn--small btn--inline" value="<=">
-        <input type="button"
-               class="btn btn--small btn--inline"
-               value="=>">
-
-
+        <input type="button" class="btn btn--small btn--inline" value="Share">
       </div>
-      <input type="button" class="btn btn--small btn--inline" value="Share">
+
+
     </div>
   </div>
 </main>
