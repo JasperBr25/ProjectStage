@@ -83,11 +83,12 @@
             ultrices metus viverra id.
           </p>
 
-          <input type="button" class="btn btn--small btn--inline" value="Edit">
+          <input id="redirect" type="button" class="btn btn--small btn--inline" value="Edit">
 
         </div>
+
         <div class="form-item-column">
-          <select name="select_name" id="select_id">
+          <select name="select_name" id="select_id" onchange="Redirect">
             <optgroup name="select_name">
               <option selected value="Query1">Query 1</option>
               <option value="Query2">Query 2</option>
@@ -172,6 +173,6 @@
     </div>
   </div>
 </footer>
-<script src="/js/main.js" ></script>
+<script src="js/main-min.js" ></script>
 </body>
 </html>
