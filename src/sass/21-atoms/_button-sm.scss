@@ -1,0 +1,14 @@
+small.btn,
+btn--small,
+a.btn--small,
+button.btn--small,
+input[type="button"],
+btn--small,
+input[type='submit'],
+btn--small {
+  margin-bottom: $gutter-width;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  font-size: .8rem;
+  line-height: 1.4rem;
+}

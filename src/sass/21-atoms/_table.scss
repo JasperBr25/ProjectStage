@@ -1,6 +1,8 @@
 table {
   width: 100%;
+  margin-bottom: $gutter-width;
   border-collapse: collapse;
+
 
   th {
     height: 50px;
@@ -18,9 +20,11 @@ table {
 
   caption {
     margin: .5rem;
+    margin-bottom: $gutter-width;
     font-size: .8rem;
     font-weight: bold;
     text-align: left;
+
   }
 
   tr:nth-child(even) {
