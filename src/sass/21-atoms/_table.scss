@@ -3,7 +3,6 @@ table {
   margin-bottom: $gutter-width;
   border-collapse: collapse;
 
-
   th {
     height: 50px;
     padding: 8px;
@@ -15,7 +14,6 @@ table {
   td {
     padding: 8px;
     text-align: left;
-
   }
 
   caption {
@@ -24,7 +22,6 @@ table {
     font-size: .8rem;
     font-weight: bold;
     text-align: left;
-
   }
 
   tr:nth-child(even) {

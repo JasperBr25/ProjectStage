@@ -1,7 +1,6 @@
-textarea {
+textareaP1 {
   min-height: 20rem;
   margin-bottom: $gutter-width;
-
 }
 
 .form-item .form-label > label {
@@ -15,8 +14,7 @@ textarea {
 legend,
 label {
   display: block;
-  margin: 0 0 .5rem;
-  margin-bottom: $gutter-width;
+  margin: 0 0 $gutter-width;
   font-size: 1rem;
   font-weight: bold;
 }

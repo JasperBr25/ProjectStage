@@ -63,13 +63,13 @@
     <h1>Overzicht gemaakte query's</h1>
     <div class="form-item">
       <div class="form-label">
-        <label for="select_id">Gemaakte query's
+        <label for="queryselect_id">Gemaakte query's
           <span class="label-optional"></span>
         </label>
       </div>
       <div class="form-columns">
         <div class="form-item-column">
-          <p>Lorem ipsum dolor amet, consectetur adipiscing elit.
+          <p id="tekst">Lorem ipsum dolor amet, consectetur adipiscing elit.
             Donec laoreet, urna sit amet
             convallis rhoncus, felis ex pellentesque neque, nec ultrices dui
             enim ut diam. Nam pellentesque
@@ -83,14 +83,14 @@
             ultrices metus viverra id.
           </p>
 
-          <input id="redirect" type="button" class="btn btn--small btn--inline" value="Edit">
-
+          <a id="linkhtml2" href="index2.html">Edit</a>
         </div>
 
         <div class="form-item-column">
-          <select name="select_name" id="select_id" onchange="Redirect">
+          <select name="Queryselect_name" id="queryselect_id" >
             <optgroup name="select_name">
-              <option selected value="Query1">Query 1</option>
+              <option disabled selected>-- selecteer --</option>
+              <option value="Query1">Query 1</option>
               <option value="Query2">Query 2</option>
               <option value="Query3">Query 3</option>
               <option value="Query4">Query 4</option>

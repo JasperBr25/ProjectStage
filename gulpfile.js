@@ -186,7 +186,6 @@ gulp.task('styles:validate', function () {
     .pipe(sassLint({
       configFile: './.sass-lint.yml'
     }))
-    // .pipe(sassLint.format())
 });
 
 /*
