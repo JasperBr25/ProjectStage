@@ -10,7 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "del": "^3.0.0",
-    "gent_styleguide": "^2.7.6",
+    "gent_styleguide": "^2.7.7",
     "gulp": "^3.9.1",
     "gulp-accessibility": "^3.0.1",
     "gulp-autoprefixer": "^4.0.0",

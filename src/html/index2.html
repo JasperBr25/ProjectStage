@@ -67,8 +67,11 @@
               <span class="label-optional"></span>
             </label>
           </div>
-          <input type="text" name="date_name" id="date_id" class="datepicker "
-                 placeholder="dd/mm/yyyy"/>
+          <div class="form-columns">
+            <div class="form-item-column">
+              <input type="text" name="date_name" id="date_id" class="datepicker " placeholder="dd/mm/yyyy" />
+        </div>
+          </div>
         </div>
 
         <div class="form-item">
@@ -129,10 +132,10 @@
               <select name="select_name" id="select-aantal">
                 <optgroup name="select_name">
                   <option selected value="Query1">5</option>
-                  <option value="Query2">10</option>
-                  <option value="Query3">15</option>
-                  <option value="Query3">20</option>
-                  <option value="Query3">50</option>
+                  <option value="Query2">50</option>
+                  <option value="Query3">100</option>
+                  <option value="Query3">250</option>
+                  <option value="Query3">500</option>
 
                 </optgroup>
               </select>
@@ -151,9 +154,10 @@
           <div class="textareaP1">
             <textarea name="textarea_nameP1" id="textarea_idP1"></textarea>
           </div>
-          <div class="buttons">
-              <input type="button" class="btn btn--small btn--inline" value="Uitvoeren">
-              <input type="button" class="btn btn--small btn--inline" value="Revert">
+          <div class="form-actions">
+            <button id="buttonuitvoeren" onclick="alert('Uw query wordt uitgevoerd!')" class="btn btn--small btn--inline" >Uitvoeren</button>
+            <!--<a href="index.html" id="buttonrevert"  class="btn btn&#45;&#45;small btn&#45;&#45;inline">Revert</a>-->
+            <a href="index.html" class="button btn btn--small btn--inline">Revert</a>
             </div>
 
           <table summary="Monthly savings">

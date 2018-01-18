@@ -1,0 +1,19 @@
+{
+  "data" : [
+    {
+      "title": "Eigenschappen artikel",
+      "query" : "PREFIX schema: < http://schema.org/ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX service: <http://purl.org/ontology/service#> SELECT DISTINCT ?properties WHERE{ ?article a schema:NewsArticle.   ?article ?properties ?waarde } limit 50",
+      "description" : "schrijf een query om de eigenschappen (properties) van een nieuwsartikel te krijgen.",
+      "tip": "Tip: je gebruikt best DISTINCT en het type van een nieuwsartikel is schema:NewsArticle (prefixen kan je opzoeken op http://prefix.cc)",
+      "explanation" : "Het PREFIXtrefwoord koppelt een voorvoegsellabel aan een IRI. Een vooraf gedefinieerde naam is een voorvoegsellabel en een lokaal deel, gescheiden door een dubbele punt. Een vooraf gedefinieerde naam wordt toegewezen aan een IRI door de IRI aan het prefix en het lokale gedeelte te koppelen. Het voorvoegsellabel of het lokale gedeelte is mogelijk leeg. Houd er rekening mee dat lokale SPARQL-namen toonaangevende cijfers toestaan, terwijl lokale XML-namen dit niet doen. Distinct zorg ervoor dat oplossingen in de reeks uniek zijn. Het vraagteken is het teken dat het een variabele is, in deze oefening is Properties een variabele. Deze variabele selecteert u, waar het artikel een nieuwsartikel is. Wat wilt de a zeggen: dssff. Als laatste heeeft u de 3 opties als voorbeeld: subject ==> predicate ==> object. het limiet op het einde spreekt voor zich."
+    },
+    {
+      "title": "titeltekst 2",
+      "query" : "PREFIX schema: < http://schema.org/"
+    },
+    {
+      "title": "titeltekst 3",
+      "query" : "PREFIX schema: < http://schema.org/"
+    }
+  ]
+}
