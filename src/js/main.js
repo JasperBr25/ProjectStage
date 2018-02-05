@@ -52,7 +52,7 @@
     // wat gebeurt er als je een optie selecteert?
     adaptlinkFunction(value);
     selectedoptionfunction(value);
-
+    //copingtosecondpageFunction(data);
   };
 
   // data ophalen
@@ -107,10 +107,60 @@
     }
   };
 
+  var showingdatacomboboxintextbox = function () {
+    var mytextbox = document.getElementById('textarea_idP1');
+    var mydropdown = document.getElementById('select-id');
+
+    mydropdown.onchange = function () {
+      mytextbox.value = mytextbox.value + this.value;
+    };
+  };
+
+
+   var copingtosecondpageFunction = function (data) {
+
+     // 2 opvangen uit de url
+     // Opgevange var opzoeken in de array
+     // Daarvan de query nemen en in het veld plakken, zie hieronder
+     // dit vullen we later op met de juiste JSON query
+
+     var qry;
+
+     // de geselecteerde query opzoeken in data
+     for (var i = 0; i < data.length; i++) {
+       if (data[i].id + "" === value) {
+         qry = data[i];
+       }
+     }
+
+     if (qry === undefined) {
+       console.warn('query niet gevonden in global array');
+       return;
+     }
+
+     document.getElementById('textarea_idP1').innerHTML = document.getElementById('query_text').innerHTML = qry.id;
+
+   };
+   var boe = function (){
+     var ugly = document.getElementById('textarea_idP1').value;
+     var obj = JSON.parse(ugly);
+     var pretty = JSON.stringify(obj, undefined, 4);
+     document.getElementById('textarea_idP1').value = pretty;
+  };
+
+
+
   // events toevoegen
   addEvents();
   // data ophalen
   sendrequestFunction();
+
+  showingdatacomboboxintextbox();
+
+  copingtosecondpageFunction(data);
+  boe();
+
+
 })
 ();
 

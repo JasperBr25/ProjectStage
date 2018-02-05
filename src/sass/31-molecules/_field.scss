@@ -7,7 +7,6 @@ textareaP1 {
   position: relative;
   width: 100%;
   min-height: 1px;
-  margin-bottom: $gutter-width;
   float: left;
 }
 
@@ -17,4 +16,8 @@ label {
   margin: 0 0 $gutter-width;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.textareaquery {
+  height: 20rem;
 }
