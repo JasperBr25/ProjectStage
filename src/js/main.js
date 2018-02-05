@@ -2,79 +2,10 @@
 (function () {
   'use strict';
 
+  // hier plaatsen we de opgehaalde queries
   var data = [];
 
-  var changeEventHandler = function (event) {
-    var value = event.target.selectedOptions[0].value;
-
-    // VOORBEELD !!!
-    // to delete
-
-    var qry;
-
-    // de geselecteerde query opzoeken in data
-    for(var i = 0; i<data.length; i++) {
-      if (data[i].title === value) {
-        qry = data[i];
-      }
-    }
-
-    document.getElementById('tekst').innerHTML = qry.query;
-
-    // even om te verhinderen dat de rest wordt uitgevoerd
-    return;
-
-    var query = document.createElement('pre');
-    var text = document.createElement('p');
-    var prefixes = document.createElement('pre');
-
-    switch (value) {
-      case 'Query1':
-        query.innerText = 'PREFIX schema: < http://schema.org/ >\n' +
-          'PREFIX rdfs: < http://www.w3.org/2000/01/rdf-schema# >\n' +
-          'PREFIX service: < http://purl.org/ontology/service# >\n' +
-          'SELECT DISTINCT ?properties WHERE{\n' +
-          '?article a schema:NewsArticle.\n' +
-          '  ?article ?properties ?waarde\n' +
-          '} limit 50\n';
-
-        text.innerText = 'Deze query zorgt ervoor om de eigenschappen (propteries) van een nieuwsartikel te krijgen.\n' +
-          'Het PREFIXtrefwoord koppelt een voorvoegsellabel aan een IRI. Een vooraf gedefinieerde naam is een voorvoegsellabel en een lokaal deel, gescheiden door een dubbele punt " :". Een vooraf gedefinieerde naam wordt toegewezen aan een IRI door de IRI aan het prefix en het lokale gedeelte te koppelen. Het voorvoegsellabel of het lokale gedeelte is mogelijk leeg. Houd er rekening mee dat lokale SPARQL-namen toonaangevende cijfers toestaan, terwijl lokale XML-namen dit niet doen.' +
-          'Voorvoegsel\tIRI\n';
-
-        prefixes.innerText = 'rdf:\thttp://www.w3.org/1999/02/22-rdf-syntax-ns#\n' +
-          'rdfs:\thttp://www.w3.org/2000/01/rdf-schema#\n' +
-          'xsd:\thttp://www.w3.org/2001/XMLSchema#\n' +
-          'fn:\thttp://www.w3.org/2005/xpath-functions#';
-        break;
-
-      case 'Query2':
-        text = 'Dit is de uitleg van query 2';
-        break;
-
-      case 'Query3':
-        text = 'Dit is de uitleg van query 3';
-        break;
-
-      case 'Query4':
-        text = 'Dit is de uitleg van query 4';
-        break;
-
-      case 'Query5':
-        text = 'Dit is de uitleg van query 5';
-        break;
-    }
-    // document.getElementById("tekst").innerHTML = '<pre>' + text + '</pre>';
-    document.getElementById('tekst').appendChild(query);
-    document.getElementById('tekst').appendChild(text);
-    document.getElementById('tekst').appendChild(prefixes);
-
-    var link = document.getElementById("linkhtml2");
-    link.href += '?Query=' + value;
-
-
-  };
-
+  // voeg events toe aan knoppen etc.
   var addEvents = function () {
 
     var select = document.getElementById('queryselect_id');
@@ -84,55 +15,102 @@
 
   };
 
-  addEvents();
+  var selectedoptionfunction = function (value) {
+    // dit vullen we later op met de juiste JSON query
+    var qry;
 
-  // in een nieuwe functie steken
-  var request = new XMLHttpRequest();
-
-  // url zal ooit veranderen
-  request.open('GET', '../src/data/queries.json', true);
-
-  request.onload = function () {
-
-    // was de request succesvol?
-    if (request.status >= 200 && request.status < 400) {
-
-      //verwijderen: is om eens te kijken
-      console.log(JSON.parse(request.response));
-
-      var response = JSON.parse(request.response);
-      data = response.data;
-
-      // DATAVERWERKING verplaatsen naar een functie
-      var queryselect = document.getElementById('queryselect_id');
-
-      for (var i = 0; i < data.length; i++) {
-        // html element gemaakt
-        var option = document.createElement('option');
-
-        // waarden ingevuld
-        option.innerText = data[i].title;
-        option.value = data[i].title;
-
-        // option toegevoegd aan de select
-        queryselect.appendChild(option);
+    // de geselecteerde query opzoeken in data
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].id + "" === value) {
+        qry = data[i];
       }
     }
-    else {
-      // mislukt
-      console.error('request mislukt');
+
+    if (qry === undefined) {
+      console.warn('query niet gevonden in global array');
+      return;
+    }
+
+    // query in juiste element steken
+    document.getElementById('query_text').innerHTML = qry.query;
+    document.getElementById('query_explanation').innerHTML = qry.explanation;
+  };
+
+  var adaptlinkFunction = function (value) {
+    // link aanpassen: verhuizen naar afzonderlijke functie
+    var link = document.getElementById("linkhtml2");
+    link.href += '?Query=' + value;
+    link.removeAttribute('hidden');
+  };
+
+  // wat gebeurt er als je een optie selecteert?
+  var changeEventHandler = function (event) {
+
+    // waarde van geselecteerde option
+    var value = event.target.selectedOptions[0].value;
+
+    // wat gebeurt er als je een optie selecteert?
+    adaptlinkFunction(value);
+    selectedoptionfunction(value);
+
+  };
+
+  // data ophalen
+  var sendrequestFunction = function () {
+
+    // nieuw XMLHttpRequest object aanmaken
+    var request = new XMLHttpRequest();
+
+    // url zal ooit veranderen
+    request.open('GET', '../src/data/queries.json', true);
+
+    // wat gebeurt er als er een antwoord komt op de request
+    request.onload = function () {
+
+      // was de request succesvol?
+      if (request.status >= 200 && request.status < 400) {
+
+        var response = JSON.parse(request.response);
+        data = response.data;
+
+        // verwerk opgehaalde data
+        workingdataFunction(data);
+      }
+      // mislukt ... doe iets
+      else {
+        // todo iets nuttigs doen
+        console.warn(request.response);
+      }
+
+    };
+
+    // request effectief versturen
+    request.send();
+  };
+
+  // data verwerken
+  var workingdataFunction = function (data) {
+
+    var queryselect = document.getElementById('queryselect_id');
+
+    for (var i = 0; i < data.length; i++) {
+      // html element gemaakt
+      var option = document.createElement('option');
+
+      // waarden ingevuld
+      option.innerText = data[i].title;
+      // todo json uitbreiden met ID's, id als value gebruiken
+
+      option.value = data[i].id;
+      // option toegevoegd aan de select
+      queryselect.appendChild(option);
     }
   };
 
-  request.send();
-})();
+  // events toevoegen
+  addEvents();
+  // data ophalen
+  sendrequestFunction();
+})
+();
 
-
-// todo
-// queries.json uitbreiden op basis van confluence
-// html select: opties verwijderen
-// xhttprequest in een nieuwe functie steken
-// DATAVERWERKING in een functie steken
-// changeEventHandler opkuisen
-//     - switch verwijderen
-//     - tekstelement opvullen met query uit data array
