@@ -5,6 +5,13 @@
   // hier plaatsen we de opgehaalde queries
   var data = [];
 
+  var getQueryString = function ( field, url ) {
+    var href = url ? url : window.location.href;
+    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+    var string = reg.exec(href);
+    return string ? string[1] : null;
+  };
+  var queryID = getQueryString('query');
 
 // data ophalen
   var sendrequestFunction = function () {
@@ -24,8 +31,6 @@
         var response = JSON.parse(request.response);
         data = response.data;
 
-        // verwerk opgehaalde data
-        workingdataFunction(data);
       }
       // mislukt ... doe iets
       else {
@@ -38,15 +43,6 @@
     // request effectief versturen
     request.send();
   };
-
-  var getQueryString = function ( field, url ) {
-    var href = url ? url : window.location.href;
-    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-    var string = reg.exec(href);
-    return string ? string[1] : null;
-  };
-  var queryID = getQueryString('query');
-
 
 
   // datset tonen in tekstvak

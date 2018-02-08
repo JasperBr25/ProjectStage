@@ -107,17 +107,10 @@
     }
   };
 
-
-
-
-
   // events toevoegen
   addEvents();
   // data ophalen
   sendrequestFunction();
-
-
-
 })
 ();
 
