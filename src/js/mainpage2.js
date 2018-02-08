@@ -5,13 +5,13 @@
   // hier plaatsen we de opgehaalde queries
   var data = [];
 
+  // waarde van een query string halen
   var getQueryString = function ( field, url ) {
     var href = url ? url : window.location.href;
     var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
     var string = reg.exec(href);
     return string ? string[1] : null;
   };
-  var queryID = getQueryString('query');
 
 // data ophalen
   var sendrequestFunction = function () {
@@ -44,75 +44,21 @@
     request.send();
   };
 
-
-  // datset tonen in tekstvak
-  var showingdatasetcomboboxintextbox = function () {
-
-    // if(document.getElementsByName('select_name').SelectedIndex > -1) {
-    var mytextbox = document.getElementById('textarea_idP1');
-    var mydropdown = document.getElementById('select-id');
-
-    mydropdown.onchange = function () {
-      mytextbox.value = mytextbox.value + this.value + "\n";
-    };
-
-  };
-  // else {
-  //console.log("Please select an item!");
-  //   }
-//};
-  var showingresourcecomboboxintextbox = function () {
-    var mytextbox = document.getElementById('textarea_idP1');
-    var mydropdown = document.getElementById('select-resource');
-
-
-    mydropdown.onchange = function () {
-      mytextbox.value = mytextbox.value + this.value;
-    };
-  };
-  var showingcomboboxintextbox = function () {
-
-    showingdatasetcomboboxintextbox();
-
-    showingresourcecomboboxintextbox();
-  };
-  var copingtosecondpageFunction = function (data) {
-
-    // 2 opvangen uit de url
-    // Opgevange var opzoeken in de array
-    // Daarvan de query nemen en in het veld plakken, zie hieronder
-    // dit vullen we later op met de juiste JSON query
-
-    var qry;
-
-    // de geselecteerde query opzoeken in data
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].id + "" === value) {
-        qry = data[i];
-      }
+  // kijken of de queryID niet gelijk is aan 0
+  var getQuery = function() {
+    var queryID = getQueryString('query');
+    if (queryID !== null)
+    {
+      sendrequestFunction();
+    }
+    else
+    {
+      console.log("Your queryID must be not null");
     }
 
-    if (qry === undefined) {
-      console.warn('query niet gevonden in global array');
-      return;
-    }
-
-    document.getElementById('textarea_idP1').innerHTML = document.getElementById('query_text').innerHTML = qry.id;
-
   };
- // var boe = function (){
-   // var ugly = document.getElementById('textarea_idP1').value;
-   // var obj = JSON.parse(ugly);
-   // var pretty = JSON.stringify(obj, undefined, 4);
-   // document.getElementById('textarea_idP1').value = pretty;
-  //};
 
-  showingcomboboxintextbox();
-  copingtosecondpageFunction(data);
- // boe();
+  getQuery();
 
-
-
-  sendrequestFunction();
 })
 ();
