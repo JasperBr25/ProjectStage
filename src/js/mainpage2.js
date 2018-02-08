@@ -34,7 +34,7 @@
       }
       // mislukt ... doe iets
       else {
-        // todo iets nuttigs doen
+        //  iets nuttigs doen
         console.warn(request.response);
       }
 
