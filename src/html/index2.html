@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Sparql query</title>
   <link rel="stylesheet" href="css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <header class="header section--wrapper container">
@@ -39,20 +40,15 @@
 
         <div class="form-item">
           <div class="form-label">
-            <label for="select-id">Keuzelijst datasets
-              <span class="label-optional"></span>
+            <label for="selectdataset-id">Keuzelijst datasets
             </label>
           </div>
           <div class="form-columns">
             <div class="form-item-column">
 
-              <select name="select_name" id="select-id">
+              <select name="select_name" id="selectdataset-id">
                 <optgroup name="select_name">
-                  <option selected value="Query1">Dataset 1</option>
-                  <option value="Query2">Dataset 2</option>
-                  <option value="Query3">Dataset 3</option>
-                  <option value="Query4">Dataset 4</option>
-                  <option value="Query5">Dataset 5</option>
+                  <option value="Dataset" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
             </div>
@@ -69,7 +65,7 @@
           </div>
           <div class="form-columns">
             <div class="form-item-column">
-              <input type="text" name="date_name" id="date_id" class="datepicker " placeholder="dd/mm/yyyy" />
+              <input type="date" name="date_name" id="date_id" class="datepicker " placeholder="dd/mm/yyyy" />
         </div>
           </div>
         </div>
@@ -86,11 +82,12 @@
 
               <select name="select_name" id="select-resource">
                 <optgroup name="select_name">
-                  <option selected value="Query1">Resource 1</option>
-                  <option value="Query2">Resource 2</option>
-                  <option value="Query3">Resource 3</option>
-                  <option value="Query4">Resource 4</option>
-                  <option value="Query5">Resource 5</option>
+                  <option value="Resource" disabled selected>-- selecteer --</option>
+                  <option value="Resource1">Resource 1</option>
+                  <option value="Resource2">Resource 2</option>
+                  <option value="Resource3">Resource 3</option>
+                  <option value="Resource4">Resource 4</option>
+                  <option value="Resource5">Resource 5</option>
                 </optgroup>
               </select>
             </div>
@@ -109,10 +106,7 @@
 
               <select name="select_name" id="select-formaat">
                 <optgroup name="select_name">
-                  <option selected value="Query1">.xml</option>
-                  <option value="Query2">.jar</option>
-                  <option value="Query3">.sql</option>
-
+                  <option value="format" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
             </div>
@@ -131,11 +125,12 @@
 
               <select name="select_name" id="select-aantal">
                 <optgroup name="select_name">
-                  <option selected value="Query1">5</option>
-                  <option value="Query2">50</option>
-                  <option value="Query3">100</option>
-                  <option value="Query3">250</option>
-                  <option value="Query3">500</option>
+                  <option value="resultaat" disabled selected>-- selecteer --</option>
+                  <option value="resultaat1">5</option>
+                  <option value="resultaat2">50</option>
+                  <option value="resultaat3">100</option>
+                  <option value="resultaat4">250</option>
+                  <option value="resultaat5">500</option>
 
                 </optgroup>
               </select>
@@ -266,5 +261,7 @@
     </div>
   </div>
 </footer>
+<script src="js/mainpage2-min.js" ></script>
+
 </body>
 </html>

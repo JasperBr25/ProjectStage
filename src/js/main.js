@@ -32,7 +32,7 @@
     }
 
     // query in juiste element steken
-    document.getElementById('query_text').innerHTML = qry.query;
+    document.getElementById('textpageone_idP1').value = qry.query;
     document.getElementById('query_explanation').innerHTML = qry.explanation;
   };
 

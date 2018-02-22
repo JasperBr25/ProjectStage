@@ -1,7 +1,9 @@
 // self invoking function
 (function () {
   'use strict';
-  
+  var dataset = [];
+  var format = [];
+
   // waarde van een query string halen
   var getQueryString = function (field, url) {
     //Die kijkt of die url ingevuld is, en indien niet dan zoekt hij ze zelf wel
@@ -23,11 +25,12 @@
     console.warn('query not found in global array');
     return null;
 
+
   };
 
-// data ophalen
-  var sendrequestFunction = function (qryId) {
-    console.log(qryId);
+// data ophalen query
+  var sendrequestqueryFunction = function (qryId) {
+  //  console.log(qryId);
 
     // nieuw XMLHttpRequest object aanmaken
     var request = new XMLHttpRequest();
@@ -37,14 +40,12 @@
 
     // wat gebeurt er als er een antwoord komt op de request
     request.onload = function () {
-
-      console.log(request.status);
+      //console.log(request.status);
 
       // was de request succesvol?
       if (request.status >= 200 && request.status < 400) {
-
         var response = JSON.parse(request.response);
-        console.log(response.data);
+      //  console.log(response.data);
 
         // todo: geselecteerde query filteren
         // daarna: andere functie oproepen om data te verwerken
@@ -60,6 +61,44 @@
         else {
           console.log("qry must be not null!");
         }
+      }
+      // mislukt ... doe iets
+      else {
+        //  iets nuttigs doen
+        console.warn(request.response);
+      }
+    };
+    // request effectief versturen
+    request.send();
+  };
+
+  // data ophalen dataset
+  var sendrequestdatasetsFunction = function (dataset) {
+   // console.log(dataset);
+
+    // nieuw XMLHttpRequest object aanmaken
+    var request = new XMLHttpRequest();
+
+    // url zal ooit veranderen
+    request.open('GET', '../src/data/datasets.json', true);
+
+    // wat gebeurt er als er een antwoord komt op de request
+    request.onload = function () {
+
+      // bekijken wat er in de status zit van het request
+     // console.log(request.status);
+
+      // was de request succesvol?
+      if (request.status >= 200 && request.status < 400) {
+
+        //de variabele response gelijk stellen aan het antwoord van het request
+        var response = JSON.parse(request.response);
+
+        //de variabele array gelijk stellen aan
+        dataset = response.dataset;
+
+        // verwerk opgehaalde data
+        workingdataFunction(dataset);
 
       }
       // mislukt ... doe iets
@@ -74,10 +113,111 @@
     request.send();
   };
 
+  // data ophalen format resultaten
+  var sendrequestformatresultFunction = function (format) {
+  //  console.log(format);
+
+    // nieuw XMLHttpRequest object aanmaken
+    var request = new XMLHttpRequest();
+
+    // url zal ooit veranderen
+    request.open('GET', '../src/data/format.json', true);
+
+    // wat gebeurt er als er een antwoord komt op de request
+    request.onload = function () {
+
+      // bekijken wat er in de status zit van het request
+    //  console.log(request.status);
+
+      // was de request succesvol?
+      if (request.status >= 200 && request.status < 400) {
+
+        //de variabele response gelijk stellen aan het antwoord van het request
+        var response = JSON.parse(request.response);
+
+        //de variabele array gelijk stellen aan
+        format = response.format;
+
+        // verwerk opgehaalde data
+        workingformatFunction(format);
+
+      }
+      // mislukt ... doe iets
+      else {
+        //  iets nuttigs doen
+        console.warn(request.response);
+      }
+
+    };
+
+    // request effectief versturen
+    request.send();
+  };
+
+  // data verwerken query
+  var workingdataFunction = function (dataset) {
+   // console.log(dataset);
+    var datasetselect = document.getElementById('selectdataset-id');
+
+    for (var i = 0; i < dataset.length; i++) {
+      // html element gemaakt
+      var option = document.createElement('option');
+
+      // waarden ingevuld
+      option.innerText = dataset[i].title;
+      // todo json uitbreiden met ID's, id als value gebruiken
+
+      option.value = dataset[i].from;
+      // option toegevoegd aan de select
+      datasetselect.appendChild(option);
+    }
+  };
+
+  // data verwerken format resultaten
+  var workingformatFunction = function (format) {
+   // console.log(format);
+    var formatselect = document.getElementById('select-formaat');
+
+    for (var i = 0; i < format.length; i++) {
+      // html element gemaakt
+      var option = document.createElement('option');
+
+      // waarden ingevuld
+      option.innerText = format[i].format;
+      // todo json uitbreiden met ID's, id als value gebruiken
+
+      option.value = format[i].id;
+      // option toegevoegd aan de select
+      formatselect.appendChild(option);
+    }
+  };
+
+  //tonen code query van json-file in het tekstvak
   var showingquerytextaraeFunction = function(qry){
 
     var mytextbox=document.getElementById('textarea_idP1');
     mytextbox.value = qry.query;
+
+  };
+
+  var placingfromintextarea = function () {
+
+    var text = document.getElementById('textarea_idP1');
+
+    text.indexOf("PREFIX");
+    console.log(text);
+
+  };
+
+  //datsettonenintekstvak
+  var showingdatasetcomboboxintextbox = function(){
+
+    var mytextbox = document.getElementById('textarea_idP1');
+    var mydropdown = document.getElementById('selectdataset-id');
+
+    mydropdown.onchange=function(){
+      mytextbox.value = this.value + "\n" + mytextbox.value;
+    };
 
   };
 
@@ -86,8 +226,8 @@
   var getQuery = function () {
     var queryID = getQueryString('query');
     if (queryID !== null) {
-      sendrequestFunction(queryID);
-      console.log(queryID);
+      sendrequestqueryFunction(queryID);
+      //console.log(queryID);
     }
     else {
       console.log("Your queryID must be not null");
@@ -96,6 +236,11 @@
   };
 
   getQuery();
+
+
+  sendrequestdatasetsFunction(dataset);
+  sendrequestformatresultFunction(format);
+  showingdatasetcomboboxintextbox();
 
 })
 ();
