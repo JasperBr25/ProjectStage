@@ -18,26 +18,22 @@
     },
     {
       "id" : 5,
-      "format": "JSON"
-    },
-    {
-      "id" : 6,
       "format": "Turtle"
     },
     {
-      "id" : 7,
+      "id" : 6,
       "format": "RDF"
     },
     {
-      "id" : 8,
+      "id" : 7,
       "format": "N-Triples"
     },
     {
-      "id" : 9,
+      "id" : 8,
       "format": "CSV"
     },
     {
-      "id" : 10,
+      "id" : 9,
       "format": "TSV"
     }
   ]

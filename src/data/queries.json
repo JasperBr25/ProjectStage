@@ -21,7 +21,7 @@
     {
       "id" : 4,
       "title": "Gebruikte klassen",
-      "query" : "PREFIX schema: <http://schema.org/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX service: <http://purl.org/ontology/service#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?object WHERE{ ?subject rdf:type ?object } limit 50<",
+      "query" : "PREFIX schema: <http://schema.org/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX service: <http://purl.org/ontology/service#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT DISTINCT ?object WHERE{ ?subject rdf:type ?object } limit 50",
       "explanation" : "Het PREFIXtrefwoord koppelt een voorvoegsellabel aan een IRI. Een vooraf gedefinieerde naam is een voorvoegsellabel en een lokaal deel, gescheiden door een dubbele punt. Een vooraf gedefinieerde naam wordt toegewezen aan een IRI door de IRI aan het prefix en het lokale gedeelte te koppelen. Het voorvoegsellabel of het lokale gedeelte is mogelijk leeg. Dit zal ik vanaf nu niet meer uitleggen. In de SELECT gaan we terug een DISCTINCT plaatsen: zorg ervoor dat oplossingen in de reeks uniek zijn. Als volgt gaan we een variabele aangeven genaamd object die getoond wordt als een titel van de eerste kolom. Na deze SELECT gaan we beginnen aan de WHERE, de rdf:type = Het sleutelwoord a(rdf:type) kan worden gebruikt als een predikaat in een drievoudig patroon en is een alternatief voor de IRI. Als laatste gaan we een limiet zeggen van 50 resultaten.  "
     },
     {

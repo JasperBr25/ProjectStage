@@ -14,6 +14,7 @@
         return string ? string[1] : null;
     };
 
+    //Het filteren van de query
     var filterQuery = function (array, id) {
 
         for (var i = 0; i < array.length; i++) {
@@ -52,7 +53,7 @@
                 // daarna: andere functie oproepen om data te verwerken
                 // de geselecteerde query opzoeken in data
                 var qry = filterQuery(response.data, qryId);
-                console.log(qry.query);
+              //  console.log(qry.query);
 
                 // todo !! controle qry !== null
                 // dan: iets met qry doen
@@ -187,7 +188,7 @@
             option.innerText = format[i].format;
             // todo json uitbreiden met ID's, id als value gebruiken
 
-            option.value = format[i].id;
+            option.value = format[i].format;
             // option toegevoegd aan de select
             formatselect.appendChild(option);
         }
@@ -201,6 +202,7 @@
 
     };
 
+    //waarde plaatsen in textarea, query en dataset
     var placingfromintextarea = function (value) {
 
         var text = document.getElementById('textarea_idP1').value;
@@ -216,7 +218,29 @@
 
     };
 
+    //uitvoeren van query als de gebruiker om de knop duwt
+    var werkenknopuitvoeren = function () {
 
+        var waardequery = document.getElementById('textarea_idP1');
+        var waardeformat = document.getElementById('select-formaat');
+
+        var query = waardequery.value;
+        var res = encodeURIComponent(query);
+
+        if ((waardeformat.selected = true))
+        {
+            waardeformat = waardeformat.value;
+
+            window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
+        }
+        else
+        {
+
+            waardeformat = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+        }
+
+
+    };
 
     // kijken of de queryID niet gelijk is aan 0
     var getQuery = function () {
@@ -242,11 +266,13 @@
             placingfromintextarea(selectedValue);
 
         });
+
+        document.getElementById('buttonuitvoeren').addEventListener("click", function (ev) {
+            werkenknopuitvoeren();
+        });
     };
 
     getQuery();
-
-
     sendrequestdatasetsFunction(dataset);
     sendrequestformatresultFunction(format);
     addEvents();
