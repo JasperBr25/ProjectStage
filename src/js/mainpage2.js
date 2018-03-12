@@ -4,6 +4,10 @@
   var dataset = [];
   var format = [];
 
+
+  // VERWIJDER DIT
+
+
   // waarde van een query string halen
   var getQueryString = function (field, url) {
     //Die kijkt of die url ingevuld is, en indien niet dan zoekt hij ze zelf wel
