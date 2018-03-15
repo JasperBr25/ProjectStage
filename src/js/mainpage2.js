@@ -53,7 +53,7 @@
                 // daarna: andere functie oproepen om data te verwerken
                 // de geselecteerde query opzoeken in data
                 var qry = filterQuery(response.data, qryId);
-              //  console.log(qry.query);
+                //  console.log(qry.query);
 
                 // todo !! controle qry !== null
                 // dan: iets met qry doen
@@ -203,20 +203,50 @@
     };
 
     //waarde plaatsen in textarea, query en dataset
-    var placingfromintextarea = function (value) {
+    var placingdatasetintextarea = function (value) {
 
-        var text = document.getElementById('textarea_idP1').value;
-
+        //de value in tekstvak steken
+        var textarea = document.getElementById('textarea_idP1');
+        //de value van die variabele in andere variabele steken zodat ik die variabele kan gebruiken met de waarde erin ipv altijd document.getElementById te doen
+        var text = textarea.value;
+        //retourneert de positie van de eerste instantie van een opgegeven waarde in een tekenreeks.
         var where = text.indexOf("WHERE");
+        var from = text.indexOf("FROM");
 
+        //wanneer er een FROM zit de tekst van textarea gaat hij de code uitvoeren
+        if (from !== -1) {
+            //in die variabele text wordt de waarde aangepast naar alles tot from + alles na de where en dat wordt samen geplakt in textarea
+            text = [text.slice(0, from), text.slice(where)].join('');
+            where = text.indexOf("WHERE");
+        }
         //eerst wordt de waarde van de query getoond van de eerste leter tot het woord WHERE,
         //dan wordt de waarde van hieronder getoond (waarde van de dataset),
         //als laatste wordt de tekst na WHERE getoond erachter
-        var finalQuery = [text.slice(0, where), value, " ", text.slice(where)].join('');
+        text = [text.slice(0, where), value, " ", text.slice(where)].join('');
+        textarea.value = text;
 
-        document.getElementById('textarea_idP1').value = finalQuery;
 
     };
+
+    //waarde van resources plaatsen in textarea
+    var placingresourcesintextarea = function (valueResource) {
+
+        //de value van textarea in variabele steken
+        var textresource = document.getElementById('textarea_idP1').value;
+
+        //in deze variabele wordt de waarde { gestoken
+        var searchTerm = '{';
+
+        //in deze variabele wordt de indexof genomen van de searchTerm = {
+        var vierkanthaakje = textresource.indexOf(searchTerm);
+
+        //in deze variabele wordt hetzelfde gedaan als in de andere soort functie alleen de variabele anders en + de searchTerm zijn lengte
+        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", valueResource, textresource.slice(vierkanthaakje+searchTerm.length)].join('');
+
+        //de waarde in finalQueryresource wordt dan geplaatst in het textarea
+        document.getElementById('textarea_idP1').value = finalQueryresource;
+    };
+
 
     //uitvoeren van query als de gebruiker om de knop duwt
     var werkenknopuitvoeren = function () {
@@ -227,18 +257,16 @@
         var query = waardequery.value;
         var res = encodeURIComponent(query);
 
-        if ((waardeformat.selected = true))
-        {
+        var selectedValue = waardeformat.options[waardeformat.selectedIndex].value;
+        if (selectedValue == "format") {
+
+            window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+        }
+        else {
             waardeformat = waardeformat.value;
 
             window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
         }
-        else
-        {
-
-            waardeformat = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
-        }
-
 
     };
 
@@ -255,20 +283,33 @@
 
     };
 
+    //verschillende evenenten die gebeuren in mijn tweede pagina
     var addEvents = function () {
+        var datasetdropdown = document.getElementById('selectdataset-id');
 
-        var mydropdown = document.getElementById('selectdataset-id');
-
-        mydropdown.addEventListener('change', function (e) {
+        //functie waarin de placingdatasetintextarea wordt opgeroepen
+        datasetdropdown.addEventListener('change', function (e) {
 
             var selectedValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
-            placingfromintextarea(selectedValue);
+            placingdatasetintextarea(selectedValue);
+
+            // Todo: functie toevoegen om inhoud van select-resources aan te passen
 
         });
 
+        //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
         document.getElementById('buttonuitvoeren').addEventListener("click", function (ev) {
             werkenknopuitvoeren();
+        });
+
+        //deels zelfde als de eerste functie in addEvents
+        var resourcedropdown = document.getElementById('select-resource');
+        resourcedropdown.addEventListener('change', function (e) {
+            var selectedrResourceValue = e.target.value;
+            //steekt de waarde hierboven in de waarde value in bovensaande functie
+            placingresourcesintextarea(selectedrResourceValue);
+
         });
     };
 
@@ -276,6 +317,5 @@
     sendrequestdatasetsFunction(dataset);
     sendrequestformatresultFunction(format);
     addEvents();
-
 })
 ();
