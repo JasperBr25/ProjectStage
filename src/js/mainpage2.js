@@ -187,7 +187,7 @@
             var option = document.createElement('option');
 
             console.log(Object.keys(response));
-            
+
             var key = [i];
 
             // waarden ingevuld
