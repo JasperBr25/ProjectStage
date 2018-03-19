@@ -3,6 +3,7 @@
     'use strict';
     var dataset = [];
     var format = [];
+    var recourse = [];
 
 
     // waarde van een query string halen
@@ -115,6 +116,88 @@
         request.send();
     };
 
+    // data verwerken query
+    var workingdataFunction = function (dataset) {
+        // console.log(dataset);
+        var datasetselect = document.getElementById('selectdataset-id');
+
+        for (var i = 0; i < dataset.length; i++) {
+            // html element gemaakt
+            var option = document.createElement('option');
+
+            // waarden ingevuld
+            option.innerText = dataset[i].title;
+            // todo json uitbreiden met ID's, id als value gebruiken
+
+            option.value = dataset[i].from;
+            // option toegevoegd aan de select
+            datasetselect.appendChild(option);
+        }
+    };
+
+    // resources ophalen
+    var sendrequestrecoursesFunction = function (recourse) {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+        // url zal ooit veranderen
+        request.open('GET', '../src/data/resource.json', true);
+
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+
+            // bekijken wat er in de status zit van het request
+            // console.log(request.status);
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+
+                //de variabele response gelijk stellen aan het antwoord van het request
+                var response = JSON.parse(request.response);
+
+
+                //console.log(response);
+                //
+                // //de variabele array gelijk stellen aan
+                // recourse = response.recourse;
+                //
+                // console.log(recourse);
+
+                // verwerk opgehaalde data
+                workingdresourceFunction(response);
+            }
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+
+        };
+
+        // request effectief versturen
+        request.send();
+    };
+
+    // data verwerken query
+    var workingdresourceFunction = function (resources) {
+        var resourceselect = document.getElementById('select-resource');
+
+        for (var i = 0; i < resources.length; i++) {
+            // html element gemaakt
+            var option = document.createElement('option');
+
+            console.log(Object.keys(response));
+            
+            var key = [i];
+
+            // waarden ingevuld
+            option.innerText = resources[key].titel;
+            option.value = resources[key].gegeven;
+            // option toegevoegd aan de select
+            resourceselect.appendChild(option);
+        }
+    };
+
     // data ophalen format resultaten
     var sendrequestformatresultFunction = function (format) {
         //  console.log(format);
@@ -154,25 +237,6 @@
 
         // request effectief versturen
         request.send();
-    };
-
-    // data verwerken query
-    var workingdataFunction = function (dataset) {
-        // console.log(dataset);
-        var datasetselect = document.getElementById('selectdataset-id');
-
-        for (var i = 0; i < dataset.length; i++) {
-            // html element gemaakt
-            var option = document.createElement('option');
-
-            // waarden ingevuld
-            option.innerText = dataset[i].title;
-            // todo json uitbreiden met ID's, id als value gebruiken
-
-            option.value = dataset[i].from;
-            // option toegevoegd aan de select
-            datasetselect.appendChild(option);
-        }
     };
 
     // data verwerken format resultaten
@@ -247,7 +311,6 @@
         document.getElementById('textarea_idP1').value = finalQueryresource;
     };
 
-
     //uitvoeren van query als de gebruiker om de knop duwt
     var werkenknopuitvoeren = function () {
 
@@ -316,6 +379,7 @@
     getQuery();
     sendrequestdatasetsFunction(dataset);
     sendrequestformatresultFunction(format);
+    sendrequestrecoursesFunction(recourse);
     addEvents();
 })
 ();
