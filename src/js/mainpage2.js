@@ -4,7 +4,7 @@
     var dataset = [];
     var format = [];
     var recourse = [];
-
+    var aantal = [];
 
     // waarde van een query string halen
     var getQueryString = function (field, url) {
@@ -136,7 +136,7 @@
     };
 
     // resources ophalen
-    var sendrequestrecoursesFunction = function (recourse) {
+    var sendrequestrecoursesFunction = function (resources, response) {
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -179,7 +179,7 @@
     };
 
     // data verwerken query
-    var workingdresourceFunction = function (resources) {
+    var workingdresourceFunction = function (resources, response) {
         var resourceselect = document.getElementById('select-resource');
 
         for (var i = 0; i < resources.length; i++) {
@@ -188,7 +188,8 @@
 
             console.log(Object.keys(response));
 
-            var key = [i];
+
+            var key = key [i];
 
             // waarden ingevuld
             option.innerText = resources[key].titel;
@@ -258,6 +259,66 @@
         }
     };
 
+    // data ophalen dataset
+    var sendrequestaantalFunction = function (aantal) {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+
+        // url zal ooit veranderen
+        request.open('GET', '../src/data/aantal.json', true);
+
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+
+            // bekijken wat er in de status zit van het request
+            // console.log(request.status);
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+
+                //de variabele response gelijk stellen aan het antwoord van het request
+                var response = JSON.parse(request.response);
+               // console.log(response);
+
+                //de variabele array gelijk stellen aan
+                aantal = response.AantalRes;
+
+                // verwerk opgehaalde data
+                workingaantalFunction(aantal);
+
+            }
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+
+        };
+
+        // request effectief versturen
+        request.send();
+    };
+
+    // data verwerken format resultaten
+    var workingaantalFunction = function (aantal) {
+        // console.log(format);
+        var aantalselect = document.getElementById('select-aantal');
+
+        for (var i = 0; i < aantal.length; i++) {
+            // html element gemaakt
+            var option = document.createElement('option');
+
+            // waarden ingevuld
+            option.innerText = aantal[i].aantal;
+            // todo json uitbreiden met ID's, id als value gebruiken
+
+            option.value = aantal[i].aantal;
+            // option toegevoegd aan de select
+            aantalselect.appendChild(option);
+        }
+    };
+
     //tonen code query van json-file in het tekstvak
     var showingquerytextaraeFunction = function (qry) {
 
@@ -311,6 +372,32 @@
         document.getElementById('textarea_idP1').value = finalQueryresource;
     };
 
+    //waarde plaatsen in textarea, query en dataset
+    var placingaantalintextarea = function (value) {
+
+        //de value van textarea in variabele steken
+        var textresource = document.getElementById('textarea_idP1').value;
+
+        //in deze variabele wordt de waarde { gestoken
+        var searchTerm = 'limit';
+
+        //in deze variabele wordt de indexof genomen van de searchTerm = {
+        var vierkanthaakje = textresource.indexOf(searchTerm);
+
+
+        //wanneer er een waarde limit waarde zit de tekst van textarea gaat hij de code uitvoeren
+        if (searchTerm !== -1) {
+           //in die variabele text wordt de waarde aangepast naar alles tot from + alles na de where en dat wordt samen geplakt in textarea
+            textresource = [textresource.slice(0, vierkanthaakje + 5)].join('');
+        }
+
+        //in deze variabele wordt hetzelfde gedaan als in de andere soort functie alleen de variabele anders en + de searchTerm zijn lengte
+        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", value, textresource.slice(vierkanthaakje + searchTerm.length)].join('');
+
+        //de waarde in finalQueryresource wordt dan geplaatst in het textarea
+        document.getElementById('textarea_idP1').value = finalQueryresource;
+    };
+
     //uitvoeren van query als de gebruiker om de knop duwt
     var werkenknopuitvoeren = function () {
 
@@ -358,6 +445,8 @@
             placingdatasetintextarea(selectedValue);
 
             // Todo: functie toevoegen om inhoud van select-resources aan te passen
+            sendrequestrecoursesFunction(recourse);
+
 
         });
 
@@ -366,7 +455,7 @@
             werkenknopuitvoeren();
         });
 
-        //deels zelfde als de eerste functie in addEvents
+        //deels zelfde als de eerste functie in addEvents maar met resource select-box
         var resourcedropdown = document.getElementById('select-resource');
         resourcedropdown.addEventListener('change', function (e) {
             var selectedrResourceValue = e.target.value;
@@ -374,12 +463,21 @@
             placingresourcesintextarea(selectedrResourceValue);
 
         });
+
+        //deels zelfde als de eerste functie in addEvents maar met de aantal select-box
+        var aantaldropdown = document.getElementById('select-aantal');
+        aantaldropdown.addEventListener('change', function (e) {
+            var selectedResourceValue = e.target.value;
+            //steekt de waarde hierboven in de waarde value in bovensaande functie
+            placingaantalintextarea(selectedResourceValue);
+
+        });
     };
 
     getQuery();
     sendrequestdatasetsFunction(dataset);
     sendrequestformatresultFunction(format);
-    sendrequestrecoursesFunction(recourse);
+    sendrequestaantalFunction(aantal);
     addEvents();
 })
 ();
