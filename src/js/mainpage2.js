@@ -1,10 +1,12 @@
 // self invoking function
 (function () {
     'use strict';
-    var dataset = [];
+    var datasets = [];
     var format = [];
-    var recourse = [];
+    var resources = [];
     var aantal = [];
+
+    var qry;
 
     // waarde van een query string halen
     var getQueryString = function (field, url) {
@@ -48,22 +50,15 @@
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
                 var response = JSON.parse(request.response);
-                //  console.log(response.data);
 
-                // todo: geselecteerde query filteren
                 // daarna: andere functie oproepen om data te verwerken
                 // de geselecteerde query opzoeken in data
-                var qry = filterQuery(response.data, qryId);
+                qry = filterQuery(response.data, qryId);
                 //  console.log(qry.query);
 
-                // todo !! controle qry !== null
                 // dan: iets met qry doen
-                if (qry !== null && qry != '') {
-                    showingquerytextaraeFunction(qry);
-                }
-                else {
-                    console.log("qry must be not null!");
-                }
+                showingquerytextaraeFunction(qry);
+
             }
             // mislukt ... doe iets
             else {
@@ -76,7 +71,7 @@
     };
 
     // data ophalen dataset
-    var sendrequestdatasetsFunction = function (dataset) {
+    var sendrequestdatasetsFunction = function () {
         // console.log(dataset);
 
         // nieuw XMLHttpRequest object aanmaken
@@ -98,10 +93,10 @@
                 var response = JSON.parse(request.response);
 
                 //de variabele array gelijk stellen aan
-                dataset = response.dataset;
+                datasets = response.dataset;
 
                 // verwerk opgehaalde data
-                workingdataFunction(dataset);
+                workingdataFunction(datasets);
 
             }
             // mislukt ... doe iets
@@ -127,19 +122,19 @@
 
             // waarden ingevuld
             option.innerText = dataset[i].title;
-            // todo json uitbreiden met ID's, id als value gebruiken
 
-            option.value = dataset[i].from;
+            option.value = dataset[i].id;
             // option toegevoegd aan de select
             datasetselect.appendChild(option);
         }
     };
 
     // resources ophalen
-    var sendrequestrecoursesFunction = function (resources, response) {
+    var sendrequestrecoursesFunction = function () {
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
+
         // url zal ooit veranderen
         request.open('GET', '../src/data/resource.json', true);
 
@@ -154,17 +149,14 @@
 
                 //de variabele response gelijk stellen aan het antwoord van het request
                 var response = JSON.parse(request.response);
+                // console.log(response);
 
-
-                //console.log(response);
-                //
-                // //de variabele array gelijk stellen aan
-                // recourse = response.recourse;
-                //
-                // console.log(recourse);
+                //de variabele array gelijk stellen aan de waarde in json file
+                resources = response;
 
                 // verwerk opgehaalde data
-                workingdresourceFunction(response);
+               // workingdresourceFunction(resources);
+
             }
             // mislukt ... doe iets
             else {
@@ -179,21 +171,44 @@
     };
 
     // data verwerken query
-    var workingdresourceFunction = function (resources, response) {
+    var workingdresourceFunction = function (datasetId) {
+
+        var filteredResources = [];
         var resourceselect = document.getElementById('select-resource');
 
-        for (var i = 0; i < resources.length; i++) {
+        resourceselect.options.length = 0;
+
+        for(var j = 0; j < resources.length; j++) {
+            // resource tijdelijk bewaren
+            var resource = resources[j];
+            if(resource.datasetid + "" === datasetId) {
+                filteredResources.push(resource);
+            }
+        }
+
+        var selecteerveld = document.createElement('option');
+
+        // <option value="Resource" disabled selected>-- selecteer --</option>
+        // value toevoegen
+        selecteerveld.value = "Resource";
+        // innertext toevoegen
+        selecteerveld.innerText = "--selecteer--";
+        // disabled op true
+        selecteerveld.disabled = true;
+        // selected op true
+        selecteerveld.selected = true;
+
+        resourceselect.appendChild(selecteerveld);
+
+        for (var i = 0; i < filteredResources.length; i++) {
+
             // html element gemaakt
             var option = document.createElement('option');
 
-            console.log(Object.keys(response));
+            // waarden invullen
+            option.innerText = filteredResources[i].titel;
+            option.value = filteredResources[i].gegeven;
 
-
-            var key = key [i];
-
-            // waarden ingevuld
-            option.innerText = resources[key].titel;
-            option.value = resources[key].gegeven;
             // option toegevoegd aan de select
             resourceselect.appendChild(option);
         }
@@ -251,7 +266,6 @@
 
             // waarden ingevuld
             option.innerText = format[i].format;
-            // todo json uitbreiden met ID's, id als value gebruiken
 
             option.value = format[i].format;
             // option toegevoegd aan de select
@@ -279,7 +293,7 @@
 
                 //de variabele response gelijk stellen aan het antwoord van het request
                 var response = JSON.parse(request.response);
-               // console.log(response);
+                // console.log(response);
 
                 //de variabele array gelijk stellen aan
                 aantal = response.AantalRes;
@@ -311,7 +325,6 @@
 
             // waarden ingevuld
             option.innerText = aantal[i].aantal;
-            // todo json uitbreiden met ID's, id als value gebruiken
 
             option.value = aantal[i].aantal;
             // option toegevoegd aan de select
@@ -322,13 +335,20 @@
     //tonen code query van json-file in het tekstvak
     var showingquerytextaraeFunction = function (qry) {
 
-        var mytextbox = document.getElementById('textarea_idP1');
-        mytextbox.value = qry.query;
+        // dan: iets met qry doen
+        if (qry !== null && qry !== '') {
+            var mytextbox = document.getElementById('textarea_idP1');
+            mytextbox.value = qry.query;
+        }
+        else {
+            console.log("qry must be not null!");
+        }
+
 
     };
 
     //waarde plaatsen in textarea, query en dataset
-    var placingdatasetintextarea = function (value) {
+    var placingdatasetintextarea = function (datasetId) {
 
         //de value in tekstvak steken
         var textarea = document.getElementById('textarea_idP1');
@@ -337,6 +357,21 @@
         //retourneert de positie van de eerste instantie van een opgegeven waarde in een tekenreeks.
         var where = text.indexOf("WHERE");
         var from = text.indexOf("FROM");
+
+        // hierin plaatsen we de 'from' value van de geselecteerde dataset
+        var value;
+
+        //op basis van id: de from opzoeken
+        for(var i = 0; i < datasets.length; i++) {
+            // dataset tijdelijk bijhouden
+            var dataset = datasets[i];
+
+            // controleren: is id gelijk aan geselecteerde datasetId?
+            if(dataset.id + "" === datasetId) {
+                // from bewaren
+                value = dataset.from;
+            }
+        }
 
         //wanneer er een FROM zit de tekst van textarea gaat hij de code uitvoeren
         if (from !== -1) {
@@ -366,7 +401,7 @@
         var vierkanthaakje = textresource.indexOf(searchTerm);
 
         //in deze variabele wordt hetzelfde gedaan als in de andere soort functie alleen de variabele anders en + de searchTerm zijn lengte
-        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", valueResource, textresource.slice(vierkanthaakje+searchTerm.length)].join('');
+        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", valueResource, textresource.slice(vierkanthaakje + searchTerm.length)].join('');
 
         //de waarde in finalQueryresource wordt dan geplaatst in het textarea
         document.getElementById('textarea_idP1').value = finalQueryresource;
@@ -387,7 +422,7 @@
 
         //wanneer er een waarde limit waarde zit de tekst van textarea gaat hij de code uitvoeren
         if (searchTerm !== -1) {
-           //in die variabele text wordt de waarde aangepast naar alles tot from + alles na de where en dat wordt samen geplakt in textarea
+            //in die variabele text wordt de waarde aangepast naar alles tot from + alles na de where en dat wordt samen geplakt in textarea
             textresource = [textresource.slice(0, vierkanthaakje + 5)].join('');
         }
 
@@ -444,15 +479,31 @@
             //steekt de waarde hierboven in de waarde value in bovensaande functie
             placingdatasetintextarea(selectedValue);
 
-            // Todo: functie toevoegen om inhoud van select-resources aan te passen
-            sendrequestrecoursesFunction(recourse);
-
+            workingdresourceFunction(selectedValue);
 
         });
 
         //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
         document.getElementById('buttonuitvoeren').addEventListener("click", function (ev) {
             werkenknopuitvoeren();
+        });
+
+        //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
+        document.getElementById('revert').addEventListener("click", function (ev) {
+            showingquerytextaraeFunction(qry);
+
+            var datasets = document.getElementById('selectdataset-id');
+            datasets.value = 'Dataset';
+
+            var resource = document.getElementById('select-resource');
+            resource.value = 'Resource';
+
+            var format = document.getElementById('select-formaat');
+            format.value = 'format';
+
+            var aantal = document.getElementById('select-aantal');
+            aantal.value = 'resultaat';
+
         });
 
         //deels zelfde als de eerste functie in addEvents maar met resource select-box
@@ -472,12 +523,14 @@
             placingaantalintextarea(selectedResourceValue);
 
         });
+
     };
 
     getQuery();
-    sendrequestdatasetsFunction(dataset);
+    sendrequestdatasetsFunction(datasets);
     sendrequestformatresultFunction(format);
     sendrequestaantalFunction(aantal);
+    sendrequestrecoursesFunction();
     addEvents();
 })
 ();

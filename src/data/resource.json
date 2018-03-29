@@ -1,139 +1,579 @@
-{
-  "Resource1": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
+[
+  {
+    "id": 1,
+    "datasetid": 1,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
   },
-  "Resource2": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource3": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource4": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource5": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource6": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource7": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource8": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource9": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource10": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource11": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource12": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource13": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource14": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource15": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource16": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource17": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource18": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource19": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource20": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource21": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource22": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource23": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource24": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource25": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource26": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource27": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource28": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource29": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource30": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource31": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource32": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource33": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  },
-  "Resource34": {
-    "titel": "Eigenschappen artikel",
-    "gegeven": "boe"
-  }
+  {
 
-}
+    "id": 2,
+    "datasetid": 1,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 3,
+    "datasetid": 2,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 4,
+    "datasetid": 2,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 5,
+    "datasetid": 3,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 6,
+    "datasetid": 3,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 7,
+    "datasetid": 4,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 8,
+    "datasetid": 4,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 9,
+    "datasetid": 5,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 10,
+    "datasetid": 5,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 11,
+    "datasetid": 6,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 12,
+    "datasetid": 6,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 13,
+    "datasetid": 7,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 14,
+    "datasetid": 7,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 15,
+    "datasetid": 8,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 16,
+    "datasetid": 8,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 17,
+    "datasetid": 9,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 18,
+    "datasetid": 9,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 19,
+    "datasetid": 10,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 20,
+    "datasetid": 10,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 21,
+    "datasetid": 11,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 22,
+    "datasetid": 11,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 23,
+    "datasetid": 12,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 24,
+    "datasetid": 12,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 25,
+    "datasetid": 13,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 26,
+    "datasetid": 13,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 27,
+    "datasetid": 14,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 28,
+    "datasetid": 14,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 29,
+    "datasetid": 15,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 30,
+    "datasetid": 15,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 31,
+    "datasetid": 16,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 32,
+    "datasetid": 16,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 33,
+    "datasetid": 17,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 34,
+    "datasetid": 17,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 35,
+    "datasetid": 18,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 36,
+    "datasetid": 18,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 37,
+    "datasetid": 19,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 38,
+    "datasetid": 19,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 39,
+    "datasetid": 20,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 40,
+    "datasetid": 20,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 41,
+    "datasetid": 21,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 42,
+    "datasetid": 21,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 43,
+    "datasetid": 22,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 44,
+    "datasetid": 22,
+    "titel": "Loan",
+    "gegeven": "<http://purl.org/ontology/dso#Loan>"
+  },
+  {
+    "id": 45,
+    "datasetid": 23,
+    "titel": "Offer",
+    "gegeven": "<http://schema.org/Offer>"
+  },
+  {
+    "id": 46,
+    "datasetid": 24,
+    "titel": "Agent",
+    "gegeven": "<http://xmlns.com/foaf/0.1/Agent>"
+  },
+  {
+    "id": 47,
+    "datasetid": 24,
+    "titel": "Address",
+    "gegeven": "<http://www.w3.org/ns/locn#Address>"
+  },
+  {
+    "id": 48,
+    "datasetid": 24,
+    "titel": "BasicAddress",
+    "gegeven": "<http://purl.org/oslo/ns/localgov#BasicAddress>"
+  },
+  {
+    "id": 49,
+    "datasetid": 24,
+    "titel": "VCard",
+    "gegeven": "<http://www.w3.org/2006/vcard/ns#VCard>"
+  },
+  {
+    "id": 50,
+    "datasetid": 24,
+    "titel": "Organization",
+    "gegeven": "<http://schema.org/Organization>"
+  },
+  {
+    "id": 51,
+    "datasetid": 24,
+    "titel": "ResidenceObject",
+    "gegeven": "<http://purl.org/oslo/ns/localgov#ResidenceObject>"
+  },
+  {
+    "id": 52,
+    "datasetid": 24,
+    "titel": "Collection",
+    "gegeven": "<http://purl.org/dc/dcmitype/Collection>"
+  },
+  {
+    "id": 53,
+    "datasetid": 25,
+    "titel": "Offer",
+    "gegeven": "<http://schema.org/Offer>"
+  },
+  {
+    "id": 54,
+    "datasetid": 26,
+    "titel": "ConceptScheme",
+    "gegeven": "<http://www.w3.org/2004/02/skos/core#ConceptScheme>"
+  },
+  {
+    "id": 55,
+    "datasetid": 26,
+    "titel": "Class",
+    "gegeven": "<http://www.w3.org/2002/07/owl#Class>"
+  },
+  {
+    "id": 56,
+    "datasetid": 26,
+    "titel": "Concept",
+    "gegeven": "<http://www.w3.org/2004/02/skos/core#Concept>"
+  },
+  {
+    "id": 57,
+    "datasetid": 27,
+    "titel": "Place",
+    "gegeven": "<http://schema.org/Place>"
+  },
+  {
+    "id": 58,
+    "datasetid": 27,
+    "titel": "ImageObject",
+    "gegeven": "<http://schema.org/ImageObject>"
+  },
+  {
+    "id": 59,
+    "datasetid": 27,
+    "titel": "Organization",
+    "gegeven": "<http://schema.org/Organization>"
+  },
+  {
+    "id": 60,
+    "datasetid": 27,
+    "titel": "Person",
+    "gegeven": "<http://schema.org/Person>"
+  },
+  {
+    "id": 61,
+    "datasetid": 27,
+    "titel": "NewsArticle",
+    "gegeven": "<http://schema.org/NewsArticle>"
+  },
+  {
+    "id": 62,
+    "datasetid": 27,
+    "titel": "CreativeWork",
+    "gegeven": "<http://schema.org/CreativeWork>"
+  },
+  {
+    "id": 63,
+    "datasetid": 27,
+    "titel": "Collection",
+    "gegeven": "<http://purl.org/dc/dcmitype/Collection>"
+  },
+  {
+    "id": 64,
+    "datasetid": 28,
+    "titel": "Rule",
+    "gegeven": "<http://purl.org/vocab/cpsv/Rule>"
+  },
+  {
+    "id": 65,
+    "datasetid": 28,
+    "titel": "PublicService",
+    "gegeven": "<http://purl.org/vocab/cpsv#PublicService>"
+  },
+  {
+    "id": 66,
+    "datasetid": 28,
+    "titel": "Collection",
+    "gegeven": "<http://purl.org/dc/dcmitype/Collection>"
+  },
+  {
+    "id": 67,
+    "datasetid": 28,
+    "titel": "Input",
+    "gegeven": "<http://purl.org/vocab/cpsv#Input>"
+  },
+  {
+    "id": 68,
+    "datasetid": 28,
+    "titel": "Location",
+    "gegeven": "<http://purl.org/dc/terms/Location>"
+  },
+  {
+    "id": 69,
+    "datasetid": 29,
+    "titel": "NewsArticle",
+    "gegeven": "<http://schema.org/NewsArticle>"
+  },
+  {
+    "id": 70,
+    "datasetid": 29,
+    "titel": "Event",
+    "gegeven": "<http://schema.org/Event>"
+  },
+  {
+    "id": 71,
+    "datasetid": 29,
+    "titel": "ImageObject",
+    "gegeven": "<http://schema.org/ImageObject>"
+  },
+  {
+    "id": 72,
+    "datasetid": 29,
+    "titel": "CreativeWork",
+    "gegeven": "<http://schema.org/CreativeWork>"
+  },
+  {
+    "id": 73,
+    "datasetid": 29,
+    "titel": "Organization",
+    "gegeven": "<http://schema.org/Organization>"
+  },
+  {
+  "id": 74,
+  "datasetid": 29,
+  "titel": "Person",
+  "gegeven": "<http://schema.org/Person>"
+},
+  {
+    "id": 75,
+    "datasetid": 30,
+    "titel": "CreativeWork",
+    "gegeven": "<http://schema.org/CreativeWork>"
+  },
+  {
+    "id": 76,
+    "datasetid": 30,
+    "titel": "Collection",
+    "gegeven": "<http://bib.schema.org/Collection>"
+  },
+  {
+    "id": 77,
+    "datasetid": 30,
+    "titel": "CollectionPage",
+    "gegeven": "<https://schema.org/CollectionPage>"
+  },
+  {
+    "id": 78,
+    "datasetid": 30,
+    "titel": "ImageGallery",
+    "gegeven": "<https://schema.org/ImageGallery>"
+  },
+  {
+    "id": 79,
+    "datasetid": 30,
+    "titel": "Quotation",
+    "gegeven": "<http://schema.org/Quotation>"
+  },
+  {
+    "id": 80,
+    "datasetid": 30,
+    "titel": "Article",
+    "gegeven": "<https://schema.org/Article>"
+  },
+  {
+    "id": 81,
+    "datasetid": 30,
+    "titel": "VideoObject",
+    "gegeven": "<https://schema.org/VideoObject>"
+  },
+  {
+    "id": 82,
+    "datasetid": 30,
+    "titel": "ImageObject",
+    "gegeven": "<http://schema.org/ImageObject>"
+  },
+  {
+    "id": 83,
+    "datasetid": 31,
+    "titel": "Place",
+    "gegeven": "<http://schema.org/Place>"
+  },
+  {
+    "id": 84,
+    "datasetid": 31,
+    "titel": "contactPoint",
+    "gegeven": "<http://schema.org/contactPoint>"
+  },
+  {
+    "id": 85,
+    "datasetid": 31,
+    "titel": "Concept",
+    "gegeven": "<http://www.w3.org/2004/02/skos/core#Concept>"
+  },
+  {
+    "id": 86,
+    "datasetid": 31,
+    "titel": "Event",
+    "gegeven": "<http://schema.org/Event>"
+  },
+  {
+    "id": 87,
+    "datasetid": 31,
+    "titel": "Organization",
+    "gegeven": "<http://schema.org/Organization>"
+  },
+  {
+    "id": 88,
+    "datasetid": 31,
+    "titel": "PostalAddress",
+    "gegeven": "<http://schema.org/PostalAddress>"
+  },
+  {
+    "id": 89,
+    "datasetid": 31,
+    "titel": "Organisation",
+    "gegeven": "<http://schema.org/Organisation>"
+  },
+  {
+    "id": 90,
+    "datasetid": 31,
+    "titel": "Offer",
+    "gegeven": "<http://schema.org/Offer>"
+  },
+  {
+    "id": 91,
+    "datasetid": 32,
+    "titel": "Reservation",
+    "gegeven": "<http://schema.org/Reservation>"
+  },
+  {
+    "id": 92,
+    "datasetid": 33,
+    "titel": "Organization",
+    "gegeven": "<http://schema.org/Organization>"
+  },
+  {
+    "id": 93,
+    "datasetid": 33,
+    "titel": "Place",
+    "gegeven": "<http://schema.org/Place>"
+  },
+  {
+    "id": 94,
+    "datasetid": 34,
+    "titel": "ParkingSite",
+    "gegeven": "<http://vocab.datex.org/terms#ParkingSite>"
+  },
+  {
+    "id": 95,
+    "datasetid": 34,
+    "titel": "ParkingFacility",
+    "gegeven": "<http://schema.org/ParkingFacility>"
+  },
+  {
+    "id": 96,
+    "datasetid": 35,
+    "titel": "Offer",
+    "gegeven": "<http://schema.org/Offer>"
+  }
+]
