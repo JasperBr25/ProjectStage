@@ -56,6 +56,10 @@
                 qry = filterQuery(response.data, qryId);
                 //  console.log(qry.query);
 
+                document.getElementById("selectdataset-id").disabled = true;
+                document.getElementById("select-resource").disabled = true;
+
+
                 // dan: iets met qry doen
                 showingQueryTextaraeFunction(qry);
 
@@ -155,7 +159,7 @@
                 resources = response;
 
                 // verwerk opgehaalde data
-               // workingdresourceFunction(resources);
+                // workingdresourceFunction(resources);
 
             }
             // mislukt ... doe iets
@@ -178,10 +182,10 @@
 
         resourceselect.options.length = 0;
 
-        for(var j = 0; j < resources.length; j++) {
+        for (var j = 0; j < resources.length; j++) {
             // resource tijdelijk bewaren
             var resource = resources[j];
-            if(resource.datasetid + "" === datasetId) {
+            if (resource.datasetid + "" === datasetId) {
                 filteredResources.push(resource);
             }
         }
@@ -362,12 +366,12 @@
         var value;
 
         //op basis van id: de from opzoeken
-        for(var i = 0; i < datasets.length; i++) {
+        for (var i = 0; i < datasets.length; i++) {
             // dataset tijdelijk bijhouden
             var dataset = datasets[i];
 
             // controleren: is id gelijk aan geselecteerde datasetId?
-            if(dataset.id + "" === datasetId) {
+            if (dataset.id + "" === datasetId) {
                 // from bewaren
                 value = dataset.from;
             }
@@ -441,18 +445,24 @@
 
         var query = waardequery.value;
         var res = encodeURIComponent(query);
+        var url;
 
         var selectedValue = waardeformat.options[waardeformat.selectedIndex].value;
-        if (selectedValue == "format") {
 
-            window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+        if (selectedValue === "format") {
+            url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
         }
         else {
             waardeformat = waardeformat.value;
-
-            window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
+            url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
         }
 
+        if (waardeformat === "HTML") {
+            showingResultaatPagina(url);
+        }
+        else {
+            window.location.href = url;
+        }
     };
 
     // kijken of de queryID niet gelijk is aan 0
@@ -466,6 +476,40 @@
             console.log("Your queryID must be not null");
         }
 
+    };
+
+    var showingResultaatPagina = function (url) {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+
+        // url zal ooit veranderen
+        request.open('GET', url, true);
+
+        console.log(url);
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+            //console.log(request.status);
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+                var response = request.response;
+
+                var resultaat = document.getElementById('resultTable');
+
+                resultaat = request.response;
+
+
+                document.getElementById("resultTable").innerHTML = request.response;
+            }
+
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+        };
+        request.send();
     };
 
     //verschillende evenenten die gebeuren in mijn tweede pagina
@@ -533,5 +577,6 @@
     sendRequestAantalFunction(aantal);
     sendRequestRecoursesFunction();
     addEvents();
+
 })
 ();
