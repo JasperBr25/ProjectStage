@@ -34,7 +34,7 @@
     };
 
 // data ophalen query
-    var sendrequestqueryFunction = function (qryId) {
+    var sendRequestQueryFunction = function (qryId) {
         //  console.log(qryId);
 
         // nieuw XMLHttpRequest object aanmaken
@@ -57,7 +57,7 @@
                 //  console.log(qry.query);
 
                 // dan: iets met qry doen
-                showingquerytextaraeFunction(qry);
+                showingQueryTextaraeFunction(qry);
 
             }
             // mislukt ... doe iets
@@ -71,7 +71,7 @@
     };
 
     // data ophalen dataset
-    var sendrequestdatasetsFunction = function () {
+    var sendRequestDatasetsFunction = function () {
         // console.log(dataset);
 
         // nieuw XMLHttpRequest object aanmaken
@@ -96,7 +96,7 @@
                 datasets = response.dataset;
 
                 // verwerk opgehaalde data
-                workingdataFunction(datasets);
+                workingDataFunction(datasets);
 
             }
             // mislukt ... doe iets
@@ -112,7 +112,7 @@
     };
 
     // data verwerken query
-    var workingdataFunction = function (dataset) {
+    var workingDataFunction = function (dataset) {
         // console.log(dataset);
         var datasetselect = document.getElementById('selectdataset-id');
 
@@ -130,7 +130,7 @@
     };
 
     // resources ophalen
-    var sendrequestrecoursesFunction = function () {
+    var sendRequestRecoursesFunction = function () {
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -171,7 +171,7 @@
     };
 
     // data verwerken query
-    var workingdresourceFunction = function (datasetId) {
+    var workingResourceFunction = function (datasetId) {
 
         var filteredResources = [];
         var resourceselect = document.getElementById('select-resource');
@@ -215,7 +215,7 @@
     };
 
     // data ophalen format resultaten
-    var sendrequestformatresultFunction = function (format) {
+    var sendRequestFormatResultFunction = function (format) {
         //  console.log(format);
 
         // nieuw XMLHttpRequest object aanmaken
@@ -240,7 +240,7 @@
                 format = response.format;
 
                 // verwerk opgehaalde data
-                workingformatFunction(format);
+                workingFormatFunction(format);
 
             }
             // mislukt ... doe iets
@@ -256,7 +256,7 @@
     };
 
     // data verwerken format resultaten
-    var workingformatFunction = function (format) {
+    var workingFormatFunction = function (format) {
         // console.log(format);
         var formatselect = document.getElementById('select-formaat');
 
@@ -274,7 +274,7 @@
     };
 
     // data ophalen dataset
-    var sendrequestaantalFunction = function (aantal) {
+    var sendRequestAantalFunction = function (aantal) {
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -299,7 +299,7 @@
                 aantal = response.AantalRes;
 
                 // verwerk opgehaalde data
-                workingaantalFunction(aantal);
+                workingAantalFunction(aantal);
 
             }
             // mislukt ... doe iets
@@ -315,7 +315,7 @@
     };
 
     // data verwerken format resultaten
-    var workingaantalFunction = function (aantal) {
+    var workingAantalFunction = function (aantal) {
         // console.log(format);
         var aantalselect = document.getElementById('select-aantal');
 
@@ -333,7 +333,7 @@
     };
 
     //tonen code query van json-file in het tekstvak
-    var showingquerytextaraeFunction = function (qry) {
+    var showingQueryTextaraeFunction = function (qry) {
 
         // dan: iets met qry doen
         if (qry !== null && qry !== '') {
@@ -348,7 +348,7 @@
     };
 
     //waarde plaatsen in textarea, query en dataset
-    var placingdatasetintextarea = function (datasetId) {
+    var placingDatasetInTextarea = function (datasetId) {
 
         //de value in tekstvak steken
         var textarea = document.getElementById('textarea_idP1');
@@ -389,7 +389,7 @@
     };
 
     //waarde van resources plaatsen in textarea
-    var placingresourcesintextarea = function (valueResource) {
+    var placingResourcesInTextarea = function (valueResource) {
 
         //de value van textarea in variabele steken
         var textresource = document.getElementById('textarea_idP1').value;
@@ -408,7 +408,7 @@
     };
 
     //waarde plaatsen in textarea, query en dataset
-    var placingaantalintextarea = function (value) {
+    var placingAantalInTextarea = function (value) {
 
         //de value van textarea in variabele steken
         var textresource = document.getElementById('textarea_idP1').value;
@@ -434,7 +434,7 @@
     };
 
     //uitvoeren van query als de gebruiker om de knop duwt
-    var werkenknopuitvoeren = function () {
+    var werkenKnopUitvoeren = function () {
 
         var waardequery = document.getElementById('textarea_idP1');
         var waardeformat = document.getElementById('select-formaat');
@@ -459,7 +459,7 @@
     var getQuery = function () {
         var queryID = getQueryString('query');
         if (queryID !== null) {
-            sendrequestqueryFunction(queryID);
+            sendRequestQueryFunction(queryID);
             //console.log(queryID);
         }
         else {
@@ -477,20 +477,21 @@
 
             var selectedValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
-            placingdatasetintextarea(selectedValue);
+            placingDatasetInTextarea(selectedValue);
 
-            workingdresourceFunction(selectedValue);
+            workingResourceFunction(selectedValue);
 
         });
 
         //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
         document.getElementById('buttonuitvoeren').addEventListener("click", function (ev) {
-            werkenknopuitvoeren();
+            werkenKnopUitvoeren();
+
         });
 
         //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
         document.getElementById('revert').addEventListener("click", function (ev) {
-            showingquerytextaraeFunction(qry);
+            showingQueryTextaraeFunction(qry);
 
             var datasets = document.getElementById('selectdataset-id');
             datasets.value = 'Dataset';
@@ -511,7 +512,7 @@
         resourcedropdown.addEventListener('change', function (e) {
             var selectedrResourceValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
-            placingresourcesintextarea(selectedrResourceValue);
+            placingResourcesInTextarea(selectedrResourceValue);
 
         });
 
@@ -520,17 +521,17 @@
         aantaldropdown.addEventListener('change', function (e) {
             var selectedResourceValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
-            placingaantalintextarea(selectedResourceValue);
+            placingAantalInTextarea(selectedResourceValue);
 
         });
 
     };
 
     getQuery();
-    sendrequestdatasetsFunction(datasets);
-    sendrequestformatresultFunction(format);
-    sendrequestaantalFunction(aantal);
-    sendrequestrecoursesFunction();
+    sendRequestDatasetsFunction(datasets);
+    sendRequestFormatResultFunction(format);
+    sendRequestAantalFunction(aantal);
+    sendRequestRecoursesFunction();
     addEvents();
 })
 ();

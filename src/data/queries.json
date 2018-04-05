@@ -27,13 +27,13 @@
     {
       "id": 5,
       "title": "Beschikbare PublicServices",
-      "query": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?PublicServices (count(?sub) as ?aantal) WHERE { ?sub a ?klasse .} ORDER BY ?PublicServices LIMIT 100",
+      "query": "PREFIX cpsv: <http://purl.org/vocab/cpsv#> PREFIX schema: <http://schema.org/> PREFIX skos: <http://www.w3.org/2004/02/skos/core#> select  (count(distinct ?publicservice ) as ?count) WHERE { ?publicservice a cpsv:PublicService. }",
       "explanation": "Het PREFIXtrefwoord koppelt een voorvoegsellabel aan een IRI. Een vooraf gedefinieerde naam is een voorvoegsellabel en een lokaal deel, gescheiden door een dubbele punt. Een vooraf gedefinieerde naam wordt toegewezen aan een IRI door de IRI aan het prefix en het lokale gedeelte te koppelen. Het voorvoegsellabel of het lokale gedeelte is mogelijk leeg. Na de prefixen gaan we terug beginnen aan de SELECT waar we een variabel maken genaamd PublicServices die ook getoond wordt als eerste gegeven in de kolom. Als volgt gaan we een count doen die ervoor zorgt dat hij de aantal PublicServices optelt en steekt in de tweede kolom genaamd aantal. Daarnaa gaan we beginnen aan de WHERE, daar gaan we zorgen dat we alleen PublicServies krijgen die bestaan. Als laatste gaan we dat het geordend is van aantal, als laatste gaan we er een limiet opzetten van 100 resultaten. "
     },
     {
       "id": 6,
       "title": "Ophalen unieke doelpublieken",
-      "query": "PREFIX schema: <http://schema.org/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX service: <http://purl.org/ontology/service#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX cpsv: <http://purl.org/vocab/cpsv#> SELECT DISTINCT ?PublicServices ?Doelpubliek WHERE { ?Doelpubliek a schema:audience.} ORDER BY ?PublicServices LIMIT 100",
+      "query": "PREFIX cpsv: <http://purl.org/vocab/cpsv#> PREFIX schema: <http://schema.org/> PREFIX skos: <http://www.w3.org/2004/02/skos/core#> SELECT DISTINCT ?doelpubliek  WHERE { ?publicservice a cpsv:PublicService; schema:audience ?doelpubliek.}",
       "explanation": "Het PREFIXtrefwoord koppelt een voorvoegsellabel aan een IRI. Een vooraf gedefinieerde naam is een voorvoegsellabel en een lokaal deel, gescheiden door een dubbele punt. Een vooraf gedefinieerde naam wordt toegewezen aan een IRI door de IRI aan het prefix en het lokale gedeelte te koppelen. Het voorvoegsellabel of het lokale gedeelte is mogelijk leeg. Na de prefixen gaan we beginnen aan de SELECT waar we iets gaan selecteren en tonen bij de kolommen van de resultaten. De DISTINCT gaat ervoor zorgen dat we van alles 1 resultaat gaan krijgen. Als volgt gaan we 2 variabelen aanmaken die getoond gaan worden als de 2 kolommen in de resultaten. Daarna gaan we beginnen aan de WHERE, waar we de variabel Doelpubliek gaan gelijk stellen aan schema:audience, dit kunt u terug vinden in schema.org. Dit zorgt ervoor dat het de unieke doelpublieken ophaalt. Als laatste gaan we het ordenen op de variabel PublicServices en er een limiet op zetten van 100 resultaten.  "
     }
   ]
