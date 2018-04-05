@@ -29,13 +29,10 @@
         // komt pas hier als de query niet gevonden werd
         console.warn('query not found in global array');
         return null;
-
-
     };
 
 // data ophalen query
     var sendRequestQueryFunction = function (qryId) {
-        //  console.log(qryId);
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -54,11 +51,9 @@
                 // daarna: andere functie oproepen om data te verwerken
                 // de geselecteerde query opzoeken in data
                 qry = filterQuery(response.data, qryId);
-                //  console.log(qry.query);
 
                 document.getElementById("selectdataset-id").disabled = true;
                 document.getElementById("select-resource").disabled = true;
-
 
                 // dan: iets met qry doen
                 showingQueryTextaraeFunction(qry);
@@ -76,7 +71,6 @@
 
     // data ophalen dataset
     var sendRequestDatasetsFunction = function () {
-        // console.log(dataset);
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -88,8 +82,6 @@
         request.onload = function () {
 
             // bekijken wat er in de status zit van het request
-            // console.log(request.status);
-
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
 
@@ -117,7 +109,6 @@
 
     // data verwerken query
     var workingDataFunction = function (dataset) {
-        // console.log(dataset);
         var datasetselect = document.getElementById('selectdataset-id');
 
         for (var i = 0; i < dataset.length; i++) {
@@ -145,21 +136,14 @@
         // wat gebeurt er als er een antwoord komt op de request
         request.onload = function () {
 
-            // bekijken wat er in de status zit van het request
-            // console.log(request.status);
-
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
 
                 //de variabele response gelijk stellen aan het antwoord van het request
                 var response = JSON.parse(request.response);
-                // console.log(response);
 
                 //de variabele array gelijk stellen aan de waarde in json file
                 resources = response;
-
-                // verwerk opgehaalde data
-                // workingdresourceFunction(resources);
 
             }
             // mislukt ... doe iets
@@ -220,7 +204,6 @@
 
     // data ophalen format resultaten
     var sendRequestFormatResultFunction = function (format) {
-        //  console.log(format);
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -230,9 +213,6 @@
 
         // wat gebeurt er als er een antwoord komt op de request
         request.onload = function () {
-
-            // bekijken wat er in de status zit van het request
-            //  console.log(request.status);
 
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
@@ -261,7 +241,6 @@
 
     // data verwerken format resultaten
     var workingFormatFunction = function (format) {
-        // console.log(format);
         var formatselect = document.getElementById('select-formaat');
 
         for (var i = 0; i < format.length; i++) {
@@ -288,9 +267,6 @@
 
         // wat gebeurt er als er een antwoord komt op de request
         request.onload = function () {
-
-            // bekijken wat er in de status zit van het request
-            // console.log(request.status);
 
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
@@ -320,7 +296,6 @@
 
     // data verwerken format resultaten
     var workingAantalFunction = function (aantal) {
-        // console.log(format);
         var aantalselect = document.getElementById('select-aantal');
 
         for (var i = 0; i < aantal.length; i++) {
@@ -347,8 +322,6 @@
         else {
             console.log("qry must be not null!");
         }
-
-
     };
 
     //waarde plaatsen in textarea, query en dataset
@@ -489,7 +462,6 @@
         console.log(url);
         // wat gebeurt er als er een antwoord komt op de request
         request.onload = function () {
-            //console.log(request.status);
 
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
@@ -498,7 +470,6 @@
                 var resultaat = document.getElementById('resultTable');
 
                 resultaat = request.response;
-
 
                 document.getElementById("resultTable").innerHTML = request.response;
             }
@@ -577,6 +548,5 @@
     sendRequestAantalFunction(aantal);
     sendRequestRecoursesFunction();
     addEvents();
-
 })
 ();

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Sparql query</title>
   <link rel="stylesheet" href="css/main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <header class="header section--wrapper container">
@@ -43,16 +42,11 @@
             <label for="selectdataset-id">Keuzelijst datasets
             </label>
           </div>
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="selectdataset-id">
                 <optgroup name="select_name">
                   <option value="Dataset" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
 
@@ -62,17 +56,11 @@
               <span class="label-optional"></span>
             </label>
           </div>
-
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="select-resource">
                 <optgroup name="select_name">
                   <option value="Resource" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
         <div class="form-item">
@@ -81,17 +69,11 @@
               <span class="label-optional"></span>
             </label>
           </div>
-
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="select-formaat">
                 <optgroup name="select_name">
                   <option value="format" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
         <div class="form-item">
@@ -100,17 +82,11 @@
               <span class="label-optional"></span>
             </label>
           </div>
-
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="select-aantal">
                 <optgroup name="select_name">
                   <option value="resultaat" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -131,7 +107,6 @@
 
           <table id="resultTable">
           </table>
-
 
           <input type="button" class="btn btn--small btn--inline" value="|<">
           <input type="button"

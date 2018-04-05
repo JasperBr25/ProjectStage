@@ -15,7 +15,7 @@
 
   };
 
-  var selectedoptionfunction = function (value) {
+  var selectedOptionFunction = function (value) {
     // dit vullen we later op met de juiste JSON query
     var qry;
 
@@ -36,7 +36,7 @@
     document.getElementById('query_explanation').innerHTML = qry.explanation;
   };
 
-  var adaptlinkFunction = function (value) {
+  var adaptLinkFunction = function (value) {
     // link aanpassen: verhuizen naar afzonderlijke functie
     var link = document.getElementById("linkhtml2");
     link.href += '?Query=' + value;
@@ -50,13 +50,12 @@
     var value = event.target.selectedOptions[0].value;
 
     // wat gebeurt er als je een optie selecteert?
-    adaptlinkFunction(value);
-    selectedoptionfunction(value);
-    //copingtosecondpageFunction(data);
+    adaptLinkFunction(value);
+    selectedOptionFunction(value);
   };
 
   // data ophalen
-  var sendrequestFunction = function () {
+  var sendRequestFunction = function () {
 
     // nieuw XMLHttpRequest object aanmaken
     var request = new XMLHttpRequest();
@@ -74,7 +73,7 @@
         data = response.data;
 
         // verwerk opgehaalde data
-        workingdataFunction(data);
+        workingDataFunction(data);
       }
       // mislukt ... doe iets
       else {
@@ -89,7 +88,7 @@
   };
 
   // data verwerken
-  var workingdataFunction = function (data) {
+  var workingDataFunction = function (data) {
 
     var queryselect = document.getElementById('queryselect_id');
 
@@ -99,7 +98,6 @@
 
       // waarden ingevuld
       option.innerText = data[i].title;
-      // todo json uitbreiden met ID's, id als value gebruiken
 
       option.value = data[i].id;
       // option toegevoegd aan de select
@@ -110,7 +108,7 @@
   // events toevoegen
   addEvents();
   // data ophalen
-  sendrequestFunction();
+  sendRequestFunction();
 })
 ();
 
