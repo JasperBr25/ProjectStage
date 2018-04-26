@@ -11,4 +11,9 @@ a.button  {
   line-height: 1.4rem;
 }
 
+.btn[disabled]:not([disabled="false"]) {
+  background-color: #808080;
+  opacity: .5;
+}
+
 

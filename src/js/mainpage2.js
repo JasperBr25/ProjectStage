@@ -58,7 +58,6 @@
 
                 // dan: iets met qry doen
                 showingQueryTextaraeFunction(qry);
-
             }
             // mislukt ... doe iets
             else {
@@ -419,6 +418,13 @@
 
         var query = waardequery.value;
 
+        // todo resulttable leegmaken
+        document.getElementById("resultTable").innerHTML = "";
+        // todo knoppen tabel terug verbergen
+        document.getElementById("nextbutton").hidden = false;
+        document.getElementById("prevbutton").hidden = false;
+        document.getElementById("prevbutton").disabled = true;
+
         try {
             // if format is html
             // limit en offset eraan plakken
@@ -461,7 +467,14 @@
             //console.log(queryID);
         }
         else {
-            console.log("Your queryID must be not null");
+            document.getElementById("textarea_idP1").value = "SELECT *\n" +
+                "FROM <[DATASET]>\n" +
+                "WHERE {\n" +
+                "[?s a resource]\n" +
+                "[rest van query]\n" +
+                "} \n" +
+                "LIMIT [aantal] \n" +
+                "OFFSET [offset]";
         }
 
     };
@@ -497,6 +510,42 @@
             }
         };
         request.send();
+    };
+
+    var addOffset = function() {
+
+        offset = offset + 20;
+
+        // prev tonen
+        document.getElementById("prevbutton").hidden = false;
+        document.getElementById("prevbutton").disabled = false;
+
+        var next = document.getElementById('nextbutton');
+        var prev = document.getElementById('prevbutton');
+        next.value = "Pagina " + (offset / 10 + 2);
+        prev.value = "Pagina " + (offset / 10);
+    };
+
+    var subtractOffset = function() {
+
+        offset = offset - 10;
+        if(offset <= 0) {
+            offset = 0;
+            // prev verbergen
+            document.getElementById("prevbutton").disabled = true;
+
+        }
+        else{
+            // else: prev terug tonen
+            document.getElementById("prevbutton").disabled = false;
+
+        }
+
+        var next = document.getElementById('nextbutton');
+        var prev = document.getElementById('prevbutton');
+        next.value = "Pagina " + (offset / 10 + 2);
+        prev.value = "Pagina " + (offset / 10);
+
     };
 
     //verschillende evenenten die gebeuren in mijn tweede pagina
@@ -571,10 +620,9 @@
         next.addEventListener('click', function () {
 
             try {
-                // offset verhogen
-                offset+=20;
                 // daarna knop uitvoeren functie uitvoeren
                 werkenKnopUitvoeren();
+                addOffset();
             }
             catch(error) {
                 console.error(error);
@@ -585,10 +633,9 @@
         prev.addEventListener('click', function () {
 
             try {
-                // offset verlagen
-                offset-=20;
                 // daarna knop uitvoeren functie uitvoeren
                 werkenKnopUitvoeren();
+                subtractOffset();
             }
             catch(error) {
                 console.error(error);
