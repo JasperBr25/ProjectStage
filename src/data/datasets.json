@@ -1,0 +1,179 @@
+{
+  "dataset" : [
+    {
+      "id" : 1,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-1996>",
+      "title": "Bibliotheek uitleningen 1996"
+    },
+    {
+      "id" : 2,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-1997>",
+      "title": "Bibliotheek uitleningen 1997"
+    },
+    {
+      "id" : 3,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-1998>",
+      "title": "Bibliotheek uitleningen 1998"
+    },
+    {
+      "id" : 4,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-1999>",
+      "title": "Bibliotheek uitleningen 1999"
+    },
+    {
+      "id" : 5,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2000>",
+      "title": "Bibliotheek uitleningen 2000"
+    },
+    {
+      "id" : 6,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2001>",
+      "title": "Bibliotheek uitleningen 2001"
+    },
+    {
+      "id" : 7,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2002>",
+      "title": "Bibliotheek uitleningen 2002"
+    },
+    {
+      "id" : 8,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2003>",
+      "title": "Bibliotheek uitleningen 2003"
+    },
+    {
+      "id" : 9,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2004>",
+      "title": "Bibliotheek uitleningen 2004"
+    },
+    {
+      "id" : 10,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2005>",
+      "title": "Bibliotheek uitleningen 2005"
+    },
+    {
+      "id" : 11,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2006>",
+      "title": "Bibliotheek uitleningen 2006"
+    },
+    {
+      "id" : 12,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2007>",
+      "title": "Bibliotheek uitleningen 2007"
+    },
+    {
+      "id" : 13,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2008>",
+      "title": "Bibliotheek uitleningen 2008"
+    },
+    {
+      "id" : 14,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2009>",
+      "title": "Bibliotheek uitleningen 2009"
+    },
+    {
+      "id" : 15,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2010>",
+      "title": "Bibliotheek uitleningen 2010 "
+    },
+    {
+      "id" : 16,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2011>",
+      "title": "Bibliotheek uitleningen 2011"
+    },
+    {
+      "id" : 17,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2012>",
+      "title": "Bibliotheek uitleningen 2012"
+    },
+    {
+      "id" : 18,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2013>",
+      "title": "Bibliotheek uitleningen 2013"
+    },
+    {
+      "id" : 19,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2014>",
+      "title": "Bibliotheek uitleningen 2014"
+    },
+    {
+      "id" : 20,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2015>",
+      "title": "Bibliotheek uitleningen 2015"
+    },
+    {
+      "id" : 21,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2016>",
+      "title": "Bibliotheek uitleningen 2016 "
+    },
+    {
+      "id" : 22,
+      "from" : "FROM <http://stad.gent/dekrook/uitleningen-2017>",
+      "title": "Bibliotheek uitleningen 2017"
+    },
+    {
+      "id" : 23,
+      "from" : "FROM <http://stad.gent/dekrook/exemplaren>",
+      "title": "Bibliotheek exemplaren"
+    },
+    {
+      "id" : 24,
+      "from" : "FROM <http://stad.gent/agents/>",
+      "title": "Personen en organisaties gepubliceerd op stad.gent"
+    },
+    {
+      "id" : 25,
+      "from" : "FROM <http://stad.gent/dekrook/exemplaren>",
+      "title": "Bibliotheek exemplaren"
+    },
+    {
+      "id" : 26,
+      "from" : "FROM <http://stad.gent/vocabularies/themes>",
+      "title": "Thema's stad.gent"
+    },
+    {
+      "id" : 27,
+      "from" : "FROM <http://stad.gent/news/>",
+      "title": "Nieuwsberichten van stad.gent"
+    },
+    {
+      "id" : 28,
+      "from" : "FROM <http://stad.gent/products/>",
+      "title": "Gentse Producten- en Dienstencatalogus"
+    },
+    {
+      "id" : 29,
+      "from" : "FROM <http://stad.gent/events/>",
+      "title": "Nieuwsberichten over evenementen op stad.gent"
+    },
+    {
+      "id" : 30,
+      "from" : "FROM <http://stad.gent/dekrook/dossiers>",
+      "title": "Bibliotheek dossiers"
+    },
+    {
+      "id" : 31,
+      "from" : "FROM <http://stad.gent/gentse-feesten/>",
+      "title": "Gentse feesten als linked open data"
+    },
+    {
+      "id" : 32,
+      "from" : "FROM <http://stad.gent/dekrook/reservaties>",
+      "title": "Bibliotheek reservaties"
+    },
+    {
+      "id" : 33,
+      "from" : "FROM <http://stad.gent/dekrook/locaties>",
+      "title": "Locaties gelinkt aan nieuwsberichten van stad.gent"
+    },
+    {
+      "id" : 34,
+      "from" : "FROM <http://stad.gent/parkings/>",
+      "title": "Parkings stad.gent"
+    },
+    {
+      "id" : 35,
+      "from" : "FROM <http://stad.gent/dekrook/exemplaren>",
+      "title": "Bibliotheek exemplaren"
+    }
+  ]
+}

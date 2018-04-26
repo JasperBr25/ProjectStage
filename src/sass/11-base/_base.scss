@@ -1,0 +1,10 @@
+.querytext {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+*[hidden] {
+  display: none !important; // sass-lint:disable-line no-important
+}
+
+

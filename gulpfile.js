@@ -86,7 +86,15 @@ gulp.task('html:validate', function () {
 gulp.task('html:build', ['html:dist'], function () {
   gulp.src(globalConfig.html_src_dir + '/**/*.html')
     .pipe(access({
-      force: true
+      force: true,
+      reportLevels: {
+        notice: false,
+        warning: true,
+        error: true
+      },
+      ignore: [
+        'WCAG2A.Principle1.Guideline1_3.1_3_1.H49.I'
+      ]
     }))
     .pipe(access.report({reportType: 'txt'}))
     .pipe(rename({
@@ -178,7 +186,6 @@ gulp.task('styles:validate', function () {
     .pipe(sassLint({
       configFile: './.sass-lint.yml'
     }))
-    .pipe(sassLint.format())
 });
 
 /*

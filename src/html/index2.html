@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sparql query</title>
-  <link rel="stylesheet" href="../../build/css/main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <header class="header section--wrapper container">
@@ -11,7 +11,7 @@
     <div id="logo" class="header-component">
       <div class="site-logo">
         <a href="#" title="Home" rel="home">
-          <img src="../../build/img/svg/logo.svg" alt="Home" class=""/>
+          <img src="img/svg/logo.svg" alt="Home" class=""/>
         </a>
         <div class="site-name">
           <div>
@@ -23,7 +23,8 @@
   </div>
 </header>
 
-<main id="main container">
+<main id="main" class="container">
+
 
   <div class="content-container">
 
@@ -32,44 +33,22 @@
     <!--binnen content-container -->
     <!--https://stijlgids.stad.gent/components/detail/grid.html-->
 
-    <h1>Maken eigen query</h1>
-
+    <h1>Maak uw eigen query</h1>
     <div class="row">
       <div class="col-desktop-4">
 
         <div class="form-item">
           <div class="form-label">
-            <label for="select-id">Keuzelijst datasets
-              <span class="label-optional"></span>
+            <label for="selectdataset-id">Keuzelijst datasets
             </label>
           </div>
-          <div class="form-columns">
-            <div class="form-item-column">
-
-              <select name="select_name" id="select-id">
+              <select name="select_name" id="selectdataset-id">
                 <optgroup name="select_name">
-                  <option selected value="Query1">Dataset 1</option>
-                  <option value="Query2">Dataset 2</option>
-                  <option value="Query3">Dataset 3</option>
-                  <option value="Query4">Dataset 4</option>
-                  <option value="Query5">Dataset 5</option>
+                  <option value="Dataset" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
-        <div class="form-item">
-
-
-          <div class="form-label">
-            <label for="date_id">Datum
-              <span class="label-optional"></span>
-            </label>
-          </div>
-          <input type="text" name="date_name" id="date_id" class="datepicker "
-                 placeholder="dd/mm/yyyy"/>
-        </div>
 
         <div class="form-item">
           <div class="form-label">
@@ -77,21 +56,11 @@
               <span class="label-optional"></span>
             </label>
           </div>
-
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="select-resource">
                 <optgroup name="select_name">
-                  <option selected value="Query1">Resource 1</option>
-                  <option value="Query2">Resource 2</option>
-                  <option value="Query3">Resource 3</option>
-                  <option value="Query4">Resource 4</option>
-                  <option value="Query5">Resource 5</option>
+                  <option value="Resource" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
         <div class="form-item">
@@ -100,20 +69,11 @@
               <span class="label-optional"></span>
             </label>
           </div>
-
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="select-formaat">
                 <optgroup name="select_name">
-                  <option selected value="Query1">.xml</option>
-                  <option value="Query2">.jar</option>
-                  <option value="Query3">.sql</option>
-
+                  <option value="format" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
-            </div>
-          </div>
         </div>
 
         <div class="form-item">
@@ -122,68 +82,44 @@
               <span class="label-optional"></span>
             </label>
           </div>
-
-          <div class="form-columns">
-            <div class="form-item-column">
-
               <select name="select_name" id="select-aantal">
                 <optgroup name="select_name">
-                  <option selected value="Query1">5</option>
-                  <option value="Query2">10</option>
-                  <option value="Query3">15</option>
-                  <option value="Query3">20</option>
-                  <option value="Query3">50</option>
-
+                  <option value="resultaat" disabled selected>-- selecteer --</option>
                 </optgroup>
               </select>
+        </div>
+
+      </div>
+      <div class="col-desktop-8">
+        <div class="form-item">
+          <div class="sparql">
+            <label for="textarea_idP1">Sparql query
+            </label>
+          </div>
+        </div>
+
+          <div class="form-item">
+          <div class="textareaP1">
+            <textarea name="textarea_nameP1" id="textarea_idP1"></textarea>
+          </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="buttonuitvoeren" class="btn btn--small btn--inline" >Uitvoeren</button>
+            <button id="revert" class="button btn btn--small btn--inline">Revert</button>
             </div>
-          </div>
-        </div>
 
+
+          <div class="form-item">
+          <table id="resultTable">
+          </table>
+          </div>
+
+          <div class="form-item">
+          <input type="button" id="prevbutton" class="btn btn--small btn--inline" value="Pagina 0" hidden/>
+          <input type="button" id="nextbutton" class="btn btn--small btn--inline" value="Pagina 2" hidden/>
+          </div>
       </div>
-
-      <p>Sparql query</p>
-      <div class="form-item">
-        <div class="form-label">
-          <label for="textarea_id">Label textarea
-          </label>
-        </div>
-        <div class="form-columns">
-          <div class="form-item-column">
-            <div class=""></div>
-          </div>
-          <div class="form-item-column">
-<textarea name="textarea_name" id="textarea_id">
-</textarea>
-            <input type="button" class="btn btn--small btn--inline"
-                   value="Uitvoeren"> <input type="button"
-                                             class="btn btn--small btn--inline"
-                                             value="Revert">
-
-          </div>
-        </div>
-
-        <p>Resultaat</p>
-
-        <table summary="Monthly savings">
-          <caption>Resultaat</caption>
-          <tr>
-            <th>Month</th>
-            <th>Savings</th>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-          </tr>
-        </table>
-        <input type="button" class="btn btn--small btn--inline" value="<=">
-        <input type="button"
-               class="btn btn--small btn--inline"
-               value="=>">
-
-
-      </div>
-      <input type="button" class="btn btn--small btn--inline" value="Share">
     </div>
   </div>
 </main>
@@ -257,5 +193,7 @@
     </div>
   </div>
 </footer>
+<script src="js/mainpage2-min.js" ></script>
+
 </body>
 </html>

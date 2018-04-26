@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+  margin-top: $gutter-width;
+  margin-bottom: $gutter-width;
+  border-collapse: collapse;
+
+  th {
+    height: 50px;
+    padding: 8px;
+    background-color: #9da8af;
+    color: #fff;
+    text-align: left;
+  }
+
+  td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  caption {
+    margin: .5rem;
+    margin-bottom: $gutter-width;
+    font-size: .8rem;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+}
+
+

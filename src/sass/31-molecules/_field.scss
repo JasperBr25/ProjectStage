@@ -1,0 +1,24 @@
+textarea {
+  min-height: 15rem;
+  margin-top: -18px;
+  margin-bottom: $gutter-width;
+}
+
+.form-item .form-label > label {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  float: left;
+}
+
+legend,
+label {
+  display: block;
+  margin: 0 0 $gutter-width;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.textareaquery {
+  height: 20rem;
+}
