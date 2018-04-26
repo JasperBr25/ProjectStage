@@ -418,18 +418,19 @@
 
         var query = waardequery.value;
 
-        // todo resulttable leegmaken
-        document.getElementById("resultTable").innerHTML = "";
-        // todo knoppen tabel terug verbergen
-        document.getElementById("nextbutton").hidden = false;
-        document.getElementById("prevbutton").hidden = false;
-        document.getElementById("prevbutton").disabled = true;
+
 
         try {
             // if format is html
             // limit en offset eraan plakken
             if (waardeformat.value === "HTML")
             {
+                document.getElementById("resultTable").innerHTML = "";
+
+                document.getElementById("nextbutton").hidden = false;
+                document.getElementById("prevbutton").hidden = false;
+                document.getElementById("prevbutton").disabled = true;
+                
                 query = query + " " + "limit 10" + " " + "offset " + offset;
             }
 
