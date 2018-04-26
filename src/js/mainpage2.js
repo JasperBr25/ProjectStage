@@ -5,6 +5,7 @@
     var format = [];
     var resources = [];
     var aantal = [];
+    var offset = 0;
 
     var qry;
 
@@ -417,25 +418,39 @@
         var waardeformat = document.getElementById('select-formaat');
 
         var query = waardequery.value;
-        var res = encodeURIComponent(query);
-        var url;
 
-        var selectedValue = waardeformat.options[waardeformat.selectedIndex].value;
+        try {
+            // if format is html
+            // limit en offset eraan plakken
+            if (waardeformat.value === "HTML")
+            {
+                query = query + " " + "limit 10" + " " + "offset " + offset;
+            }
 
-        if (selectedValue === "format") {
-            url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+            var res = encodeURIComponent(query);
+            var url;
+
+            var selectedValue = waardeformat.options[waardeformat.selectedIndex].value;
+
+            if (selectedValue === "format") {
+                url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+            }
+            else {
+                waardeformat = waardeformat.value;
+                url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
+            }
+
+            if (waardeformat === "HTML") {
+                showingResultaatPagina(url);
+            }
+            else {
+                window.location.href = url;
+            }
         }
-        else {
-            waardeformat = waardeformat.value;
-            url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
+        catch(err) {
+            document.getElementById("demo").innerHTML = err.message;
         }
 
-        if (waardeformat === "HTML") {
-            showingResultaatPagina(url);
-        }
-        else {
-            window.location.href = url;
-        }
     };
 
     // kijken of de queryID niet gelijk is aan 0
@@ -472,6 +487,7 @@
                 resultaat = request.response;
 
                 document.getElementById("resultTable").innerHTML = request.response;
+
             }
 
             // mislukt ... doe iets
@@ -486,6 +502,11 @@
     //verschillende evenenten die gebeuren in mijn tweede pagina
     var addEvents = function () {
         var datasetdropdown = document.getElementById('selectdataset-id');
+        var resourcedropdown = document.getElementById('select-resource');
+        var aantaldropdown = document.getElementById('select-aantal');
+        var next = document.getElementById('nextbutton');
+        var prev = document.getElementById('prevbutton');
+        var share = document.getElementById('sharebutton');
 
         //functie waarin de placingdatasetintextarea wordt opgeroepen
         datasetdropdown.addEventListener('change', function (e) {
@@ -499,13 +520,22 @@
         });
 
         //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
-        document.getElementById('buttonuitvoeren').addEventListener("click", function (ev) {
-            werkenKnopUitvoeren();
+        document.getElementById('buttonuitvoeren').addEventListener("click", function (ev){
+            ev.preventDefault();
+
+            offset = 0;
+            try {
+                werkenKnopUitvoeren();
+            }
+            catch(err) {
+                document.getElementById("demo").innerHTML = err.message;
+            }
 
         });
 
         //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
-        document.getElementById('revert').addEventListener("click", function (ev) {
+        document.getElementById('revert').addEventListener("click", function (ev){
+            ev.preventDefault();
             showingQueryTextaraeFunction(qry);
 
             var datasets = document.getElementById('selectdataset-id');
@@ -523,7 +553,6 @@
         });
 
         //deels zelfde als de eerste functie in addEvents maar met resource select-box
-        var resourcedropdown = document.getElementById('select-resource');
         resourcedropdown.addEventListener('change', function (e) {
             var selectedrResourceValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
@@ -532,13 +561,41 @@
         });
 
         //deels zelfde als de eerste functie in addEvents maar met de aantal select-box
-        var aantaldropdown = document.getElementById('select-aantal');
         aantaldropdown.addEventListener('change', function (e) {
             var selectedResourceValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
             placingAantalInTextarea(selectedResourceValue);
 
         });
+
+        next.addEventListener('click', function () {
+
+            try {
+                // offset verhogen
+                offset+=20;
+                // daarna knop uitvoeren functie uitvoeren
+                werkenKnopUitvoeren();
+            }
+            catch(error) {
+                console.error(error);
+            }
+
+        });
+        
+        prev.addEventListener('click', function () {
+
+            try {
+                // offset verlagen
+                offset-=20;
+                // daarna knop uitvoeren functie uitvoeren
+                werkenKnopUitvoeren();
+            }
+            catch(error) {
+                console.error(error);
+            }
+
+        });
+
 
     };
 

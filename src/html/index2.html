@@ -25,6 +25,7 @@
 
 <main id="main" class="container">
 
+
   <div class="content-container">
 
 
@@ -96,31 +97,38 @@
             <label for="textarea_idP1">Sparql query
             </label>
           </div>
+        </div>
 
+          <div class="form-item">
           <div class="textareaP1">
             <textarea name="textarea_nameP1" id="textarea_idP1"></textarea>
           </div>
+          </div>
+
           <div class="form-actions">
             <button id="buttonuitvoeren" class="btn btn--small btn--inline" >Uitvoeren</button>
             <button id="revert" class="button btn btn--small btn--inline">Revert</button>
             </div>
 
+
+          <div class="form-item">
           <table id="resultTable">
           </table>
+          </div>
 
-          <input type="button" class="btn btn--small btn--inline" value="|<">
-          <input type="button"
-                 class="btn btn--small btn--inline"
-                 value=">|">
+          <div class="form-item">
+          <input type="button" id="prevbutton" class="btn btn--small btn--inline" value="|<">
+          <input type="button" id="nextbutton" class="btn btn--small btn--inline" value=">|">
+          </div>
 
-        </div>
-        <input type="button" class="btn btn--small btn--inline" value="Share">
+          <div class="form-item">
+          <input type="button" id="sharebutton" class="btn btn--small btn--inline" value="Share">
+          </div>
       </div>
-
-
     </div>
   </div>
 </main>
+
 <footer class="footer section--wrapper container" role="contentinfo"
         data-columns="4">
   <div class="content-container">
