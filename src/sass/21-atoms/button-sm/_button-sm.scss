@@ -4,12 +4,16 @@ button {
   padding-top: .2rem;
   padding-bottom: .2rem;
   font-size: .8rem;
-  line-height: 1.4rem;
 }
 
 a.button  {
   margin-bottom: $gutter-width;
   line-height: 1.4rem;
+}
+
+.btn[disabled]:not([disabled="false"]) {
+  background-color: #808080;
+  opacity: .5;
 }
 
 

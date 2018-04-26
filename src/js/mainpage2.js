@@ -1,9 +1,13 @@
 // self invoking function
 (function () {
     'use strict';
-    var dataset = [];
+    var datasets = [];
     var format = [];
+    var resources = [];
+    var aantal = [];
+    var offset = 0;
 
+    var qry;
 
     // waarde van een query string halen
     var getQueryString = function (field, url) {
@@ -26,13 +30,10 @@
         // komt pas hier als de query niet gevonden werd
         console.warn('query not found in global array');
         return null;
-
-
     };
 
 // data ophalen query
-    var sendrequestqueryFunction = function (qryId) {
-        //  console.log(qryId);
+    var sendRequestQueryFunction = function (qryId) {
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -47,22 +48,16 @@
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
                 var response = JSON.parse(request.response);
-                //  console.log(response.data);
 
-                // todo: geselecteerde query filteren
                 // daarna: andere functie oproepen om data te verwerken
                 // de geselecteerde query opzoeken in data
-                var qry = filterQuery(response.data, qryId);
-                //  console.log(qry.query);
+                qry = filterQuery(response.data, qryId);
 
-                // todo !! controle qry !== null
+                document.getElementById("selectdataset-id").disabled = true;
+                document.getElementById("select-resource").disabled = true;
+
                 // dan: iets met qry doen
-                if (qry !== null && qry != '') {
-                    showingquerytextaraeFunction(qry);
-                }
-                else {
-                    console.log("qry must be not null!");
-                }
+                showingQueryTextaraeFunction(qry);
             }
             // mislukt ... doe iets
             else {
@@ -75,8 +70,7 @@
     };
 
     // data ophalen dataset
-    var sendrequestdatasetsFunction = function (dataset) {
-        // console.log(dataset);
+    var sendRequestDatasetsFunction = function () {
 
         // nieuw XMLHttpRequest object aanmaken
         var request = new XMLHttpRequest();
@@ -88,8 +82,6 @@
         request.onload = function () {
 
             // bekijken wat er in de status zit van het request
-            // console.log(request.status);
-
             // was de request succesvol?
             if (request.status >= 200 && request.status < 400) {
 
@@ -97,51 +89,10 @@
                 var response = JSON.parse(request.response);
 
                 //de variabele array gelijk stellen aan
-                dataset = response.dataset;
+                datasets = response.dataset;
 
                 // verwerk opgehaalde data
-                workingdataFunction(dataset);
-
-            }
-            // mislukt ... doe iets
-            else {
-                //  iets nuttigs doen
-                console.warn(request.response);
-            }
-
-        };
-
-        // request effectief versturen
-        request.send();
-    };
-
-    // data ophalen format resultaten
-    var sendrequestformatresultFunction = function (format) {
-        //  console.log(format);
-
-        // nieuw XMLHttpRequest object aanmaken
-        var request = new XMLHttpRequest();
-
-        // url zal ooit veranderen
-        request.open('GET', '../src/data/format.json', true);
-
-        // wat gebeurt er als er een antwoord komt op de request
-        request.onload = function () {
-
-            // bekijken wat er in de status zit van het request
-            //  console.log(request.status);
-
-            // was de request succesvol?
-            if (request.status >= 200 && request.status < 400) {
-
-                //de variabele response gelijk stellen aan het antwoord van het request
-                var response = JSON.parse(request.response);
-
-                //de variabele array gelijk stellen aan
-                format = response.format;
-
-                // verwerk opgehaalde data
-                workingformatFunction(format);
+                workingDataFunction(datasets);
 
             }
             // mislukt ... doe iets
@@ -157,8 +108,7 @@
     };
 
     // data verwerken query
-    var workingdataFunction = function (dataset) {
-        // console.log(dataset);
+    var workingDataFunction = function (dataset) {
         var datasetselect = document.getElementById('selectdataset-id');
 
         for (var i = 0; i < dataset.length; i++) {
@@ -167,17 +117,130 @@
 
             // waarden ingevuld
             option.innerText = dataset[i].title;
-            // todo json uitbreiden met ID's, id als value gebruiken
 
-            option.value = dataset[i].from;
+            option.value = dataset[i].id;
             // option toegevoegd aan de select
             datasetselect.appendChild(option);
         }
     };
 
+    // resources ophalen
+    var sendRequestRecoursesFunction = function () {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+
+        // url zal ooit veranderen
+        request.open('GET', '../src/data/resource.json', true);
+
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+
+                //de variabele response gelijk stellen aan het antwoord van het request
+                var response = JSON.parse(request.response);
+
+                //de variabele array gelijk stellen aan de waarde in json file
+                resources = response;
+
+            }
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+
+        };
+
+        // request effectief versturen
+        request.send();
+    };
+
+    // data verwerken query
+    var workingResourceFunction = function (datasetId) {
+
+        var filteredResources = [];
+        var resourceselect = document.getElementById('select-resource');
+
+        resourceselect.options.length = 0;
+
+        for (var j = 0; j < resources.length; j++) {
+            // resource tijdelijk bewaren
+            var resource = resources[j];
+            if (resource.datasetid + "" === datasetId) {
+                filteredResources.push(resource);
+            }
+        }
+
+        var selecteerveld = document.createElement('option');
+
+        // <option value="Resource" disabled selected>-- selecteer --</option>
+        // value toevoegen
+        selecteerveld.value = "Resource";
+        // innertext toevoegen
+        selecteerveld.innerText = "--selecteer--";
+        // disabled op true
+        selecteerveld.disabled = true;
+        // selected op true
+        selecteerveld.selected = true;
+
+        resourceselect.appendChild(selecteerveld);
+
+        for (var i = 0; i < filteredResources.length; i++) {
+
+            // html element gemaakt
+            var option = document.createElement('option');
+
+            // waarden invullen
+            option.innerText = filteredResources[i].titel;
+            option.value = filteredResources[i].gegeven;
+
+            // option toegevoegd aan de select
+            resourceselect.appendChild(option);
+        }
+    };
+
+    // data ophalen format resultaten
+    var sendRequestFormatResultFunction = function (format) {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+
+        // url zal ooit veranderen
+        request.open('GET', '../src/data/format.json', true);
+
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+
+                //de variabele response gelijk stellen aan het antwoord van het request
+                var response = JSON.parse(request.response);
+
+                //de variabele array gelijk stellen aan
+                format = response.format;
+
+                // verwerk opgehaalde data
+                workingFormatFunction(format);
+
+            }
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+
+        };
+
+        // request effectief versturen
+        request.send();
+    };
+
     // data verwerken format resultaten
-    var workingformatFunction = function (format) {
-        // console.log(format);
+    var workingFormatFunction = function (format) {
         var formatselect = document.getElementById('select-formaat');
 
         for (var i = 0; i < format.length; i++) {
@@ -186,7 +249,6 @@
 
             // waarden ingevuld
             option.innerText = format[i].format;
-            // todo json uitbreiden met ID's, id als value gebruiken
 
             option.value = format[i].format;
             // option toegevoegd aan de select
@@ -194,16 +256,76 @@
         }
     };
 
+    // data ophalen dataset
+    var sendRequestAantalFunction = function (aantal) {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+
+        // url zal ooit veranderen
+        request.open('GET', '../src/data/aantal.json', true);
+
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+
+                //de variabele response gelijk stellen aan het antwoord van het request
+                var response = JSON.parse(request.response);
+                // console.log(response);
+
+                //de variabele array gelijk stellen aan
+                aantal = response.AantalRes;
+
+                // verwerk opgehaalde data
+                workingAantalFunction(aantal);
+
+            }
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+
+        };
+
+        // request effectief versturen
+        request.send();
+    };
+
+    // data verwerken format resultaten
+    var workingAantalFunction = function (aantal) {
+        var aantalselect = document.getElementById('select-aantal');
+
+        for (var i = 0; i < aantal.length; i++) {
+            // html element gemaakt
+            var option = document.createElement('option');
+
+            // waarden ingevuld
+            option.innerText = aantal[i].aantal;
+
+            option.value = aantal[i].aantal;
+            // option toegevoegd aan de select
+            aantalselect.appendChild(option);
+        }
+    };
+
     //tonen code query van json-file in het tekstvak
-    var showingquerytextaraeFunction = function (qry) {
+    var showingQueryTextaraeFunction = function (qry) {
 
-        var mytextbox = document.getElementById('textarea_idP1');
-        mytextbox.value = qry.query;
-
+        // dan: iets met qry doen
+        if (qry !== null && qry !== '') {
+            var mytextbox = document.getElementById('textarea_idP1');
+            mytextbox.value = qry.query;
+        }
+        else {
+            console.log("qry must be not null!");
+        }
     };
 
     //waarde plaatsen in textarea, query en dataset
-    var placingdatasetintextarea = function (value) {
+    var placingDatasetInTextarea = function (datasetId) {
 
         //de value in tekstvak steken
         var textarea = document.getElementById('textarea_idP1');
@@ -212,6 +334,21 @@
         //retourneert de positie van de eerste instantie van een opgegeven waarde in een tekenreeks.
         var where = text.indexOf("WHERE");
         var from = text.indexOf("FROM");
+
+        // hierin plaatsen we de 'from' value van de geselecteerde dataset
+        var value;
+
+        //op basis van id: de from opzoeken
+        for (var i = 0; i < datasets.length; i++) {
+            // dataset tijdelijk bijhouden
+            var dataset = datasets[i];
+
+            // controleren: is id gelijk aan geselecteerde datasetId?
+            if (dataset.id + "" === datasetId) {
+                // from bewaren
+                value = dataset.from;
+            }
+        }
 
         //wanneer er een FROM zit de tekst van textarea gaat hij de code uitvoeren
         if (from !== -1) {
@@ -229,7 +366,7 @@
     };
 
     //waarde van resources plaatsen in textarea
-    var placingresourcesintextarea = function (valueResource) {
+    var placingResourcesInTextarea = function (valueResource) {
 
         //de value van textarea in variabele steken
         var textresource = document.getElementById('textarea_idP1').value;
@@ -241,31 +378,83 @@
         var vierkanthaakje = textresource.indexOf(searchTerm);
 
         //in deze variabele wordt hetzelfde gedaan als in de andere soort functie alleen de variabele anders en + de searchTerm zijn lengte
-        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", valueResource, textresource.slice(vierkanthaakje+searchTerm.length)].join('');
+        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", valueResource, textresource.slice(vierkanthaakje + searchTerm.length)].join('');
 
         //de waarde in finalQueryresource wordt dan geplaatst in het textarea
         document.getElementById('textarea_idP1').value = finalQueryresource;
     };
 
+    //waarde plaatsen in textarea, query en dataset
+    var placingAantalInTextarea = function (value) {
+
+        //de value van textarea in variabele steken
+        var textresource = document.getElementById('textarea_idP1').value;
+
+        //in deze variabele wordt de waarde { gestoken
+        var searchTerm = 'limit';
+
+        //in deze variabele wordt de indexof genomen van de searchTerm = {
+        var vierkanthaakje = textresource.indexOf(searchTerm);
+
+
+        //wanneer er een waarde limit waarde zit de tekst van textarea gaat hij de code uitvoeren
+        if (searchTerm !== -1) {
+            //in die variabele text wordt de waarde aangepast naar alles tot from + alles na de where en dat wordt samen geplakt in textarea
+            textresource = [textresource.slice(0, vierkanthaakje + 5)].join('');
+        }
+
+        //in deze variabele wordt hetzelfde gedaan als in de andere soort functie alleen de variabele anders en + de searchTerm zijn lengte
+        var finalQueryresource = [textresource.slice(0, vierkanthaakje + searchTerm.length), " ", value, textresource.slice(vierkanthaakje + searchTerm.length)].join('');
+
+        //de waarde in finalQueryresource wordt dan geplaatst in het textarea
+        document.getElementById('textarea_idP1').value = finalQueryresource;
+    };
 
     //uitvoeren van query als de gebruiker om de knop duwt
-    var werkenknopuitvoeren = function () {
+    var werkenKnopUitvoeren = function () {
 
         var waardequery = document.getElementById('textarea_idP1');
         var waardeformat = document.getElementById('select-formaat');
 
         var query = waardequery.value;
-        var res = encodeURIComponent(query);
 
-        var selectedValue = waardeformat.options[waardeformat.selectedIndex].value;
-        if (selectedValue == "format") {
+        // todo resulttable leegmaken
+        document.getElementById("resultTable").innerHTML = "";
+        // todo knoppen tabel terug verbergen
+        document.getElementById("nextbutton").hidden = false;
+        document.getElementById("prevbutton").hidden = false;
+        document.getElementById("prevbutton").disabled = true;
 
-            window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+        try {
+            // if format is html
+            // limit en offset eraan plakken
+            if (waardeformat.value === "HTML")
+            {
+                query = query + " " + "limit 10" + " " + "offset " + offset;
+            }
+
+            var res = encodeURIComponent(query);
+            var url;
+
+            var selectedValue = waardeformat.options[waardeformat.selectedIndex].value;
+
+            if (selectedValue === "format") {
+                url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=JSON&timeout=0&debug=o';
+            }
+            else {
+                waardeformat = waardeformat.value;
+                url = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
+            }
+
+            if (waardeformat === "HTML") {
+                showingResultaatPagina(url);
+            }
+            else {
+                window.location.href = url;
+            }
         }
-        else {
-            waardeformat = waardeformat.value;
-
-            window.location.href = 'https://stad.gent/sparql?default-graph-uri=&query=' + res + '&format=' + waardeformat + '&timeout=0&debug=on';
+        catch(err) {
+            document.getElementById("demo").innerHTML = err.message;
         }
 
     };
@@ -274,48 +463,194 @@
     var getQuery = function () {
         var queryID = getQueryString('query');
         if (queryID !== null) {
-            sendrequestqueryFunction(queryID);
+            sendRequestQueryFunction(queryID);
             //console.log(queryID);
         }
         else {
-            console.log("Your queryID must be not null");
+            document.getElementById("textarea_idP1").value = "SELECT *\n" +
+                "FROM <[DATASET]>\n" +
+                "WHERE {\n" +
+                "[?s a resource]\n" +
+                "[rest van query]\n" +
+                "} \n" +
+                "LIMIT [aantal] \n" +
+                "OFFSET [offset]";
         }
+
+    };
+
+    var showingResultaatPagina = function (url) {
+
+        // nieuw XMLHttpRequest object aanmaken
+        var request = new XMLHttpRequest();
+
+        // url zal ooit veranderen
+        request.open('GET', url, true);
+
+        console.log(url);
+        // wat gebeurt er als er een antwoord komt op de request
+        request.onload = function () {
+
+            // was de request succesvol?
+            if (request.status >= 200 && request.status < 400) {
+                var response = request.response;
+
+                var resultaat = document.getElementById('resultTable');
+
+                resultaat = request.response;
+
+                document.getElementById("resultTable").innerHTML = request.response;
+
+            }
+
+            // mislukt ... doe iets
+            else {
+                //  iets nuttigs doen
+                console.warn(request.response);
+            }
+        };
+        request.send();
+    };
+
+    var addOffset = function() {
+
+        offset = offset + 20;
+
+        // prev tonen
+        document.getElementById("prevbutton").hidden = false;
+        document.getElementById("prevbutton").disabled = false;
+
+        var next = document.getElementById('nextbutton');
+        var prev = document.getElementById('prevbutton');
+        next.value = "Pagina " + (offset / 10 + 2);
+        prev.value = "Pagina " + (offset / 10);
+    };
+
+    var subtractOffset = function() {
+
+        offset = offset - 10;
+        if(offset <= 0) {
+            offset = 0;
+            // prev verbergen
+            document.getElementById("prevbutton").disabled = true;
+
+        }
+        else{
+            // else: prev terug tonen
+            document.getElementById("prevbutton").disabled = false;
+
+        }
+
+        var next = document.getElementById('nextbutton');
+        var prev = document.getElementById('prevbutton');
+        next.value = "Pagina " + (offset / 10 + 2);
+        prev.value = "Pagina " + (offset / 10);
 
     };
 
     //verschillende evenenten die gebeuren in mijn tweede pagina
     var addEvents = function () {
         var datasetdropdown = document.getElementById('selectdataset-id');
+        var resourcedropdown = document.getElementById('select-resource');
+        var aantaldropdown = document.getElementById('select-aantal');
+        var next = document.getElementById('nextbutton');
+        var prev = document.getElementById('prevbutton');
+        var share = document.getElementById('sharebutton');
 
         //functie waarin de placingdatasetintextarea wordt opgeroepen
         datasetdropdown.addEventListener('change', function (e) {
 
             var selectedValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
-            placingdatasetintextarea(selectedValue);
+            placingDatasetInTextarea(selectedValue);
 
-            // Todo: functie toevoegen om inhoud van select-resources aan te passen
+            workingResourceFunction(selectedValue);
 
         });
 
         //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
-        document.getElementById('buttonuitvoeren').addEventListener("click", function (ev) {
-            werkenknopuitvoeren();
+        document.getElementById('buttonuitvoeren').addEventListener("click", function (ev){
+            ev.preventDefault();
+
+            offset = 0;
+            try {
+                werkenKnopUitvoeren();
+            }
+            catch(err) {
+                document.getElementById("demo").innerHTML = err.message;
+            }
+
         });
 
-        //deels zelfde als de eerste functie in addEvents
-        var resourcedropdown = document.getElementById('select-resource');
+        //functie waarin de knop uitvoeren wordt opgeroepen, aangeduid naar welk id dat hij moet kijken
+        document.getElementById('revert').addEventListener("click", function (ev){
+            ev.preventDefault();
+            showingQueryTextaraeFunction(qry);
+
+            var datasets = document.getElementById('selectdataset-id');
+            datasets.value = 'Dataset';
+
+            var resource = document.getElementById('select-resource');
+            resource.value = 'Resource';
+
+            var format = document.getElementById('select-formaat');
+            format.value = 'format';
+
+            var aantal = document.getElementById('select-aantal');
+            aantal.value = 'resultaat';
+
+        });
+
+        //deels zelfde als de eerste functie in addEvents maar met resource select-box
         resourcedropdown.addEventListener('change', function (e) {
             var selectedrResourceValue = e.target.value;
             //steekt de waarde hierboven in de waarde value in bovensaande functie
-            placingresourcesintextarea(selectedrResourceValue);
+            placingResourcesInTextarea(selectedrResourceValue);
 
         });
+
+        //deels zelfde als de eerste functie in addEvents maar met de aantal select-box
+        aantaldropdown.addEventListener('change', function (e) {
+            var selectedResourceValue = e.target.value;
+            //steekt de waarde hierboven in de waarde value in bovensaande functie
+            placingAantalInTextarea(selectedResourceValue);
+
+        });
+
+        next.addEventListener('click', function () {
+
+            try {
+                // daarna knop uitvoeren functie uitvoeren
+                werkenKnopUitvoeren();
+                addOffset();
+            }
+            catch(error) {
+                console.error(error);
+            }
+
+        });
+        
+        prev.addEventListener('click', function () {
+
+            try {
+                // daarna knop uitvoeren functie uitvoeren
+                werkenKnopUitvoeren();
+                subtractOffset();
+            }
+            catch(error) {
+                console.error(error);
+            }
+
+        });
+
+
     };
 
     getQuery();
-    sendrequestdatasetsFunction(dataset);
-    sendrequestformatresultFunction(format);
+    sendRequestDatasetsFunction(datasets);
+    sendRequestFormatResultFunction(format);
+    sendRequestAantalFunction(aantal);
+    sendRequestRecoursesFunction();
     addEvents();
 })
 ();
