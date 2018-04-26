@@ -1,0 +1,40 @@
+{
+  "format" : [
+    {
+      "id" : 1,
+      "format": "HTML"
+    },
+    {
+      "id" : 2,
+      "format": "Spreadsheet"
+    },
+    {
+      "id" : 3,
+      "format": "XML"
+    },
+    {
+      "id" : 4,
+      "format": "JSON"
+    },
+    {
+      "id" : 5,
+      "format": "Turtle"
+    },
+    {
+      "id" : 6,
+      "format": "RDF"
+    },
+    {
+      "id" : 7,
+      "format": "N-Triples"
+    },
+    {
+      "id" : 8,
+      "format": "CSV"
+    },
+    {
+      "id" : 9,
+      "format": "TSV"
+    }
+  ]
+}
