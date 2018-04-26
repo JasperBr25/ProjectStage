@@ -20,6 +20,8 @@ var access = require('gulp-accessibility');
 var htmlhint = require('gulp-htmlhint');
 var jshint = require('gulp-jshint');
 
+var ghPages = require('gulp-gh-pages');
+
 
 var globalConfig = {
   scripts_src_dir: 'src/js',
@@ -349,4 +351,10 @@ gulp.task('build', function (done) {
 gulp.task('fonts:dist', function (cb) {
   gulp.src(globalConfig.fonts_src_dir + '/**/*.{eot,svg,ttf,woff,woff2')
     .pipe(gulp.dest(globalConfig.fonts_dir));
+});
+
+
+gulp.task('deploy', function() {
+    return gulp.src('./build/**/*')
+        .pipe(ghPages())
 });
