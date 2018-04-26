@@ -168,7 +168,7 @@ gulp.task('styles:dist', function () {
     .pipe(csscomb())
     .pipe(sass({
       outputStyle: 'nested',
-      includePaths: ['node_modules/breakpoint-sass/stylesheets', 'node_modules/susy/sass']
+      includePaths: ['node_modules/breakpoint-sass/stylesheets', 'node_modules/susy/sass' ]
     })).on('error', sass.logError)
     .pipe(autoprefixer({
       browsers: ['last 5 versions']
